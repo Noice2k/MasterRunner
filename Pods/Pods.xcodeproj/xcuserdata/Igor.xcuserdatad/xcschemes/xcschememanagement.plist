@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-MasterRunner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MasterRunnerTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MasterRunnerUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>VK-ios-sdk-VKSdkResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>VK-ios-sdk.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0E40B8102429309496B7538F255D43E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>327BDDF5805C0F02553188EE87487ABB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56653B7C345839DA5BE990AE51EDE3BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62F5ADA8CF7AE3F8DBCED49765880346</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB9B2E7E82E1799FD4B93A3356C46292</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

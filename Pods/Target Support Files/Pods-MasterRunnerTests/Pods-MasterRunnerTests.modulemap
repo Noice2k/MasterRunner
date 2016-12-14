@@ -1,0 +1,6 @@
+framework module Pods_MasterRunnerTests {
+  umbrella header "Pods-MasterRunnerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
