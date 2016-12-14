@@ -6,7 +6,8 @@ target 'MasterRunner' do
   use_frameworks!
 
   # Pods for MasterRunner
-pod “VK-ios-sdk”
+pod ‘VK-ios-sdk’
+pod ‘Firebase/Core’
 
   target 'MasterRunnerTests' do
     inherit! :search_paths
