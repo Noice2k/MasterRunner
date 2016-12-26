@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		54E2BFD580781F68447CD26B /* Pods_MasterRunner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3A9043BDC4BD1ACBE53E9A /* Pods_MasterRunner.framework */; };
+		783A86BD1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */; };
+		783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */; };
 		786314011E01370A001521A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786314001E01370A001521A5 /* SplashViewController.swift */; };
+		788DDDDC1E097B50007C130A /* RunnerVKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DDDDB1E097B50007C130A /* RunnerVKDelegate.swift */; };
 		789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D462E1E011A290009FB74 /* AppDelegate.swift */; };
 		789D46311E011A290009FB74 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D46301E011A290009FB74 /* ViewController.swift */; };
 		789D46341E011A290009FB74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789D46321E011A290009FB74 /* Main.storyboard */; };
@@ -41,7 +44,11 @@
 		03C77B2E0E9D53617626E80D /* Pods_MasterRunnerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunnerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DCB2A8CACA7201D2597825 /* Pods-MasterRunnerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasterRunnerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasterRunnerUITests/Pods-MasterRunnerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C8F943ADD388B62227A218A /* Pods_MasterRunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLoginDelegate.swift; sourceTree = "<group>"; };
+		783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		786314001E01370A001521A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		788DDDDB1E097B50007C130A /* RunnerVKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerVKDelegate.swift; sourceTree = "<group>"; };
+		788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasterRunner.entitlements; sourceTree = "<group>"; };
 		789D462B1E011A290009FB74 /* MasterRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		789D462E1E011A290009FB74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		789D46301E011A290009FB74 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,12 +131,16 @@
 		789D462D1E011A290009FB74 /* MasterRunner */ = {
 			isa = PBXGroup;
 			children = (
+				788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */,
 				78F0C6411E01299000316BDF /* SupportFiles */,
 				789D462E1E011A290009FB74 /* AppDelegate.swift */,
 				789D46301E011A290009FB74 /* ViewController.swift */,
+				788DDDDB1E097B50007C130A /* RunnerVKDelegate.swift */,
 				789D46351E011A290009FB74 /* Assets.xcassets */,
 				789D463A1E011A290009FB74 /* Info.plist */,
 				786314001E01370A001521A5 /* SplashViewController.swift */,
+				783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */,
+				783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */,
 			);
 			path = MasterRunner;
 			sourceTree = "<group>";
@@ -249,8 +260,16 @@
 				TargetAttributes = {
 					789D462A1E011A290009FB74 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 8ZX477FQPL;
+						DevelopmentTeam = PGLRQHAD7Y;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
+						};
 					};
 					789D463E1E011A290009FB74 = {
 						CreatedOnToolsVersion = 8.2;
@@ -441,6 +460,9 @@
 				786314011E01370A001521A5 /* SplashViewController.swift in Sources */,
 				789D46311E011A290009FB74 /* ViewController.swift in Sources */,
 				789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */,
+				788DDDDC1E097B50007C130A /* RunnerVKDelegate.swift in Sources */,
+				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
+				783A86BD1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,10 +607,13 @@
 			baseConfigurationReference = BD3CBD551F2373B4B9CDB373 /* Pods-MasterRunner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8ZX477FQPL;
+				CODE_SIGN_ENTITLEMENTS = MasterRunner/MasterRunner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PGLRQHAD7Y;
 				INFOPLIST_FILE = MasterRunner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoicehome.MasterRunner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IgorNoice.MasterRunner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -599,10 +624,13 @@
 			baseConfigurationReference = B650495142CD5A5A48257B92 /* Pods-MasterRunner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8ZX477FQPL;
+				CODE_SIGN_ENTITLEMENTS = MasterRunner/MasterRunner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PGLRQHAD7Y;
 				INFOPLIST_FILE = MasterRunner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoicehome.MasterRunner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IgorNoice.MasterRunner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7p2-R0-jFn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7p2-R0-jFn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="-374" y="233"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="Bjn-Xr-25s">
             <objects>
-                <viewController id="wCP-I5-hGc" sceneMemberID="viewController">
+                <viewController id="wCP-I5-hGc" customClass="LoginViewController" customModule="MasterRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rPX-ln-Mhx"/>
                         <viewControllerLayoutGuide type="bottom" id="c5o-d8-zYq"/>
@@ -88,12 +88,23 @@
                     <view key="view" contentMode="scaleToFill" id="4In-UH-wSz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CK2-1d-KdW">
+                                <rect key="frame" x="138" y="318" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login with Vk"/>
+                                <connections>
+                                    <action selector="LoginWithVK:" destination="wCP-I5-hGc" eventType="touchUpInside" id="zew-Zj-3Hd"/>
+                                    <action selector="test:" destination="wCP-I5-hGc" eventType="touchUpInside" id="2pG-cF-PSn"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ng-X9-Wvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2039" y="994"/>
+            <point key="canvasLocation" x="-2039.2" y="993.55322338830592"/>
         </scene>
     </scenes>
     <resources>

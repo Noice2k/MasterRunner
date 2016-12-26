@@ -9,19 +9,29 @@
 import UIKit
 import VK_ios_sdk
 
+let scope = ["email"]
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var splashDelay = false
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        VKSdk.processOpen(url, fromApplication: "vk5776437")
+        let  res = VKSdk.processOpen(url, fromApplication: "vk5776437")
+        if res { print("ok")}
         return true
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        // VKSdk.processOpen(URL, fromApplication: "vk5776437")
+                
+       
+        
+        
+        
         return true
     }
 
@@ -46,7 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
+}
 
 
+
+func delay(delay:UInt, closure:@escaping ()->()) {
+    
+    let deadlineTime = DispatchTime.now() + .seconds(1)
+    DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            closure()
+    }
+    
 }
 
