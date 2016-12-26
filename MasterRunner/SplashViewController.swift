@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 class SplashViewController: UIViewController, FirebaseLoginDelegate {
 
@@ -21,7 +22,11 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
+        
+        
         if (!appDelegate.splashDelay) {
+            // check
             delay(delay: 1, closure: {
                 self.continueLogin()
             })
@@ -33,8 +38,26 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
     }
     
     func continueLogin() {
+        
         appDelegate.splashDelay = false
-        self.goToLogin()
+        
+        // try to auto login to
+        VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
+            if state == .authorized {
+                // auto autotization ok, init user
+                NSLog("authorized")
+                self.performSegue(withIdentifier: "ShowMainTabWindow", sender: self)
+
+            } else {
+                // show login offer
+                self.goToLogin()
+            }
+            return
+        })
+
+        
+        
+       
     }
     
 }

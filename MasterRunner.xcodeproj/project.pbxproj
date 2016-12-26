@@ -11,7 +11,6 @@
 		783A86BD1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */; };
 		783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */; };
 		786314011E01370A001521A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786314001E01370A001521A5 /* SplashViewController.swift */; };
-		788DDDDC1E097B50007C130A /* RunnerVKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DDDDB1E097B50007C130A /* RunnerVKDelegate.swift */; };
 		789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D462E1E011A290009FB74 /* AppDelegate.swift */; };
 		789D46311E011A290009FB74 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D46301E011A290009FB74 /* ViewController.swift */; };
 		789D46341E011A290009FB74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789D46321E011A290009FB74 /* Main.storyboard */; };
@@ -47,7 +46,6 @@
 		783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLoginDelegate.swift; sourceTree = "<group>"; };
 		783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		786314001E01370A001521A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		788DDDDB1E097B50007C130A /* RunnerVKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerVKDelegate.swift; sourceTree = "<group>"; };
 		788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasterRunner.entitlements; sourceTree = "<group>"; };
 		789D462B1E011A290009FB74 /* MasterRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		789D462E1E011A290009FB74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				78F0C6411E01299000316BDF /* SupportFiles */,
 				789D462E1E011A290009FB74 /* AppDelegate.swift */,
 				789D46301E011A290009FB74 /* ViewController.swift */,
-				788DDDDB1E097B50007C130A /* RunnerVKDelegate.swift */,
 				789D46351E011A290009FB74 /* Assets.xcassets */,
 				789D463A1E011A290009FB74 /* Info.plist */,
 				786314001E01370A001521A5 /* SplashViewController.swift */,
@@ -460,7 +457,6 @@
 				786314011E01370A001521A5 /* SplashViewController.swift in Sources */,
 				789D46311E011A290009FB74 /* ViewController.swift in Sources */,
 				789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */,
-				788DDDDC1E097B50007C130A /* RunnerVKDelegate.swift in Sources */,
 				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
 				783A86BD1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift in Sources */,
 			);

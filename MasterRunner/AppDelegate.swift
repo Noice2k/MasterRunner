@@ -11,10 +11,14 @@ import VK_ios_sdk
 
 let scope = ["email"]
 
+var sdkInstance : VKSdk?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    
     
     var splashDelay = false
 
@@ -26,12 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-       // VKSdk.processOpen(URL, fromApplication: "vk5776437")
-                
-       
-        
-        
-        
+        sdkInstance = VKSdk.initialize(withAppId: "5776437")
         return true
     }
 

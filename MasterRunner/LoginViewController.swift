@@ -19,7 +19,6 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         vk?.uiDelegate = self
  */
         
-        let sdkInstance = VKSdk.initialize(withAppId: "5776437")
         sdkInstance!.register(self)
         sdkInstance!.uiDelegate = self
         
