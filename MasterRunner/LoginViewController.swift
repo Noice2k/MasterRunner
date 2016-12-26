@@ -10,9 +10,12 @@ import UIKit
 import VK_ios_sdk
 
 class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
+    
+    //static let instanceLoginVC? : LoginViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //instanceLoginVC = self
         
         /*let vk = VKSdk.initialize(withAppId: "ddf")
         vk?.register(self)
@@ -32,11 +35,13 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     @IBAction func LoginWithVK(_ sender: UIButton) {
        
         
-        
+         self.dismiss(animated: true)
         let scope = ["friends", "email"]
         VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
             if state == .authorized {
                 NSLog("authorized")
+                self.dismiss(animated: true)
+                
             } else {
                 VKSdk.authorize(scope)
             }
@@ -51,7 +56,13 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         
     }
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+        }
+        
+        self.dismiss(animated: true)
         print(result)
+        
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {

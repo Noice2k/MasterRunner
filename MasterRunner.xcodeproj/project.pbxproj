@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54E2BFD580781F68447CD26B /* Pods_MasterRunner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3A9043BDC4BD1ACBE53E9A /* Pods_MasterRunner.framework */; };
+		780705B41E11771400A43CDB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780705B31E11771400A43CDB /* User.swift */; };
 		783A86BD1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */; };
 		783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */; };
 		786314011E01370A001521A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786314001E01370A001521A5 /* SplashViewController.swift */; };
@@ -17,6 +18,7 @@
 		789D46361E011A290009FB74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 789D46351E011A290009FB74 /* Assets.xcassets */; };
 		789D46441E011A290009FB74 /* MasterRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D46431E011A290009FB74 /* MasterRunnerTests.swift */; };
 		789D464F1E011A290009FB74 /* MasterRunnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D464E1E011A290009FB74 /* MasterRunnerUITests.swift */; };
+		78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */; };
 		D8862EAA9E41659C04863153 /* Pods_MasterRunnerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C77B2E0E9D53617626E80D /* Pods_MasterRunnerUITests.framework */; };
 		F036E749D33AEFB8CC03B6A5 /* Pods_MasterRunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8F943ADD388B62227A218A /* Pods_MasterRunnerTests.framework */; };
 /* End PBXBuildFile section */
@@ -43,6 +45,7 @@
 		03C77B2E0E9D53617626E80D /* Pods_MasterRunnerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunnerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DCB2A8CACA7201D2597825 /* Pods-MasterRunnerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasterRunnerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasterRunnerUITests/Pods-MasterRunnerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C8F943ADD388B62227A218A /* Pods_MasterRunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		780705B31E11771400A43CDB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		783A86BC1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLoginDelegate.swift; sourceTree = "<group>"; };
 		783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		786314001E01370A001521A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		789D464A1E011A290009FB74 /* MasterRunnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasterRunnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		789D464E1E011A290009FB74 /* MasterRunnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterRunnerUITests.swift; sourceTree = "<group>"; };
 		789D46501E011A290009FB74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7C3A9043BDC4BD1ACBE53E9A /* Pods_MasterRunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1F70D075233BC9ECD354AD /* Pods-MasterRunnerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasterRunnerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasterRunnerUITests/Pods-MasterRunnerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B650495142CD5A5A48257B92 /* Pods-MasterRunner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasterRunner.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasterRunner/Pods-MasterRunner.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,9 +133,11 @@
 		789D462D1E011A290009FB74 /* MasterRunner */ = {
 			isa = PBXGroup;
 			children = (
+				780705B31E11771400A43CDB /* User.swift */,
 				788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */,
 				78F0C6411E01299000316BDF /* SupportFiles */,
 				789D462E1E011A290009FB74 /* AppDelegate.swift */,
+				78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */,
 				789D46301E011A290009FB74 /* ViewController.swift */,
 				789D46351E011A290009FB74 /* Assets.xcassets */,
 				789D463A1E011A290009FB74 /* Info.plist */,
@@ -459,6 +465,8 @@
 				789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */,
 				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
 				783A86BD1E02D82F00CD5CD8 /* FirebaseLoginDelegate.swift in Sources */,
+				78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */,
+				780705B41E11771400A43CDB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,11 +615,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PGLRQHAD7Y;
 				INFOPLIST_FILE = MasterRunner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.IgorNoice.MasterRunner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -624,11 +633,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PGLRQHAD7Y;
 				INFOPLIST_FILE = MasterRunner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.IgorNoice.MasterRunner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
