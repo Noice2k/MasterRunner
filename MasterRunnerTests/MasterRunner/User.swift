@@ -9,9 +9,9 @@
 import UIKit
 
 class User {
-    var dictionary: NSMutableDictionary?
+    var dictionary: NSDictionary?
     
-    init(dictionary: NSMutableDictionary) {
+    init(dictionary: NSDictionary) {
         self.dictionary = dictionary
     }
     
@@ -24,8 +24,7 @@ class User {
                 let userData = defaults.object(forKey: "currentUser") as? Data
                 if let userData = userData {
                     if let dictionary = try? JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary {
-                        let mdictionary = NSMutableDictionary (dictionary: dictionary)
-                        _currentUser = User(dictionary: mdictionary)
+                        _currentUser = User(dictionary: dictionary)
                     } else {
                         _currentUser = nil
                     }
@@ -47,11 +46,6 @@ class User {
             }
             
         }
-    }
-    
-    func SetVkUser(email: String) {
-        dictionary?["VkLogin"] = true
-        dictionary?["Email"] = email
     }
     
 }

@@ -78,10 +78,8 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     }
     
     func initUser()  {
-        let dictionary = NSMutableDictionary();
+        let dictionary = NSDictionary();
         
-        dictionary["VkLogin"] = true
-        dictionary["Email"] = VKSdk.accessToken().email
         let user = User(dictionary: dictionary)
         User.currentUser = user
     }
