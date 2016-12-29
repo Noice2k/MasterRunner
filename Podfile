@@ -8,7 +8,8 @@ target 'MasterRunner' do
   # Pods for MasterRunner
 pod ‘VK-ios-sdk’
 pod ‘Firebase/Core’
-
+pod ‘Firebase/Auth’
+pod ‘Firebase/Database’
   target 'MasterRunnerTests' do
     inherit! :search_paths
     # Pods for testing

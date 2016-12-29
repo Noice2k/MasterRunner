@@ -24,11 +24,9 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
         
         if (!appDelegate.splashDelay) {
             // check
-            delay(delay: 1, closure: {
-                
-                
-                self.continueLogin()
-            })
+           // delay(delay: 1, closure: {
+             self.continueLogin()
+           // })
         }
     }
     

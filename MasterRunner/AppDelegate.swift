@@ -8,6 +8,8 @@
 
 import UIKit
 import VK_ios_sdk
+import Firebase
+import FirebaseAuth
 
 let scope = ["email"]
 
@@ -24,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let  res = VKSdk.processOpen(url, fromApplication: "vk5776437")
+        FIRApp.initialize()
+        
+
         if res { print("ok")}
         return true
     }
@@ -31,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         sdkInstance = VKSdk.initialize(withAppId: "5776437")
-        
-        
+        FIRApp.configure()
         return true
     }
 

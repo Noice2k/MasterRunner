@@ -10,13 +10,24 @@
 
 import UIKit
 import VK_ios_sdk
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     
     //static let instanceLoginVC? : LoginViewController
-
+    
+    var db: FIRDatabaseReference!
+    
+    var email       = ""
+    var password    = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        FIRApp.initialize()
+        
+
         //instanceLoginVC = self
         
         /*let vk = VKSdk.initialize(withAppId: "ddf")
@@ -40,8 +51,10 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
             if state == .authorized {
                 NSLog("authorized")
-                self.initUser()
-                self.dismiss(animated: true)
+                
+                
+                self.tryInitFireBaseUser()
+               // self.dismiss(animated: true)
                 
             } else {
                 VKSdk.authorize(scope)
@@ -58,12 +71,8 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        initUser()
-        DispatchQueue.main.async {
-            self.dismiss(animated: true)
-        }
-        
-        self.dismiss(animated: true)
+        // try loing to FireBase with VKLogin
+        tryInitFireBaseUser()
         print(result)
         
     }
@@ -77,12 +86,42 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         
     }
     
-    func initUser()  {
+    
+    func tryInitFireBaseUser()  {
+        //
+        let email = VKSdk.accessToken().email
+        
+        if FIRAuth.auth()?.currentUser != nil {
+        } else {
+            // try login before create new user
+            
+            
+            
+            
+            FIRAuth.auth()?.createUser(withEmail: email!, password: "passsssssword", completion: { (user, error) in
+                print(error.debugDescription)
+                if (user != nil) {
+                    
+                }
+                
+            })
+            
+        }
+        
+        /*
+        
+        
         let dictionary = NSMutableDictionary();
         
         dictionary["VkLogin"] = true
         dictionary["Email"] = VKSdk.accessToken().email
         let user = User(dictionary: dictionary)
         User.currentUser = user
+
+        // leave login page
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+        }
+ */
     }
 }
