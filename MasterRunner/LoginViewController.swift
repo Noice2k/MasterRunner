@@ -107,10 +107,6 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
             })
             
         }
-        
-        /*
-        
-        
         let dictionary = NSMutableDictionary();
         
         dictionary["VkLogin"] = true
@@ -122,6 +118,5 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         DispatchQueue.main.async {
             self.dismiss(animated: true)
         }
- */
     }
 }

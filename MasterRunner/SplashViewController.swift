@@ -8,6 +8,7 @@
 
 import UIKit
 import VK_ios_sdk
+import FirebaseAuth
 
 class SplashViewController: UIViewController, FirebaseLoginDelegate {
 
@@ -41,6 +42,16 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
     func continueLogin() {
         
         appDelegate.splashDelay = false
+        
+        var firUser = FIRAuth.auth()?.currentUser
+        if firUser == nil {
+            // new user
+        } else {
+            // user existed
+            
+        }
+        
+        
         
         if User.currentUser == nil {
             // show login offer

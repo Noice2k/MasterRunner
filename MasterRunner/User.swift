@@ -8,6 +8,8 @@
 
 import UIKit
 
+// user Firebase account
+// store the user emal,pass,nickname for future compartibilyti with another login system
 class User {
     var dictionary: NSMutableDictionary?
     
@@ -48,6 +50,7 @@ class User {
             
         }
     }
+   
     
     func SetVkUser(email: String) {
         dictionary?["VkLogin"] = true
