@@ -518,6 +518,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Создать аккаунт"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smM-xH-rsJ">
+                                <rect key="frame" x="131" y="268" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="testGroup:" destination="wCP-I5-hGc" eventType="touchUpInside" id="eqO-z5-Eyk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -530,7 +538,7 @@
     <resources>
         <image name="BlueBtn" width="9" height="33"/>
         <image name="BlueBtn_pressed" width="9" height="33"/>
-        <image name="LogoImage" width="564" height="565"/>
+        <image name="LogoImage" width="236" height="394"/>
         <image name="VKLoging" width="108" height="22"/>
         <image name="_blue" width="22" height="22"/>
         <image name="_green" width="22" height="22"/>

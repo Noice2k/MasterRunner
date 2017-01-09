@@ -10,6 +10,7 @@
 
 import UIKit
 import VK_ios_sdk
+
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
@@ -23,6 +24,30 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     var email       = ""
     var password    = ""
     
+    func qtest(responce: VKResponse<VKApiObject>) {
+        print("SwiftyVK: captcha.force success \n \(responce)")
+       // var json : Array<Any>!
+        
+            if let json = try JSONSerialization.data(withJSONObject: responce.json, options: []) as? Array! {
+                print(json["count"])
+                
+            }
+            
+    }
+    
+    @IBAction func testGroup(_ sender: Any) {
+        // try to get wall 
+        
+        let req = VKApi.request(withMethod: "wall.get", andParameters: ["domain" : "begoman"])
+        req?.execute(resultBlock: {response in
+                    self.qtest(responce: response!)
+                }, errorBlock: { (error) in
+            })
+        
+        
+        
+        
+            }
     override func viewDidLoad() {
         super.viewDidLoad()
         FIRApp.initialize()
