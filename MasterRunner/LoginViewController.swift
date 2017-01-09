@@ -72,9 +72,10 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         // try loing to FireBase with VKLogin
+        guard result.token != nil else {
+            return
+        }
         tryInitFireBaseUser()
-        print(result)
-        
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {

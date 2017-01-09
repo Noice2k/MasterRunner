@@ -253,7 +253,6 @@
 				TargetAttributes = {
 					789D462A1E011A290009FB74 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = PGLRQHAD7Y;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
@@ -602,7 +601,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = PGLRQHAD7Y;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MasterRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -619,7 +618,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shumaher2000@mail.ru (76Y6KZ32QF)";
-				DEVELOPMENT_TEAM = PGLRQHAD7Y;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MasterRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
