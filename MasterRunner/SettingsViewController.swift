@@ -8,6 +8,7 @@
 
 import UIKit
 import VK_ios_sdk
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
 
@@ -36,6 +37,11 @@ class SettingsViewController: UIViewController {
     @IBAction func ForceLogOut(_ sender: Any) {
         
         VKSdk.forceLogout()
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch  {
+        }
+        
         User.currentUser = nil
         
         parent?.dismiss(animated: true, completion: {})

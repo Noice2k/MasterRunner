@@ -8,6 +8,7 @@
 //  Copyright © 2016 Igor Sinyakov. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import VK_ios_sdk
 
@@ -17,81 +18,65 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     
-    //static let instanceLoginVC? : LoginViewController
     
-    var db: FIRDatabaseReference!
+    // MARK: Model
+    let password_salt = "MasterRunner"
+    
+    enum UserLoginMode {
+        case vkloginMode
+        case emailLoginMode
+        case unknow
+    }
+    
+    var userLoginMode = UserLoginMode.unknow
     
     var email       = ""
     var password    = ""
+    var fir_password = ""
     
-    func qtest(responce: VKResponse<VKApiObject>) {
-        print("SwiftyVK: captcha.force success \n \(responce)")
-       // var json : Array<Any>!
-        
-            if let json = try JSONSerialization.data(withJSONObject: responce.json, options: []) as? Array! {
-                print(json["count"])
-                
-            }
-            
+    
+    // MARK: GUI
+    
+    @IBOutlet weak var textUserEmail: UITextField!
+    //static let instanceLoginVC? : LoginViewController
+    
+    @IBOutlet weak var textUserPassword: UITextField!
+    var db: FIRDatabaseReference!
+    
+    
+    // return back from this MVC to Splash MVC
+    func back()
+    {
+        // leave login page
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+        }
     }
     
-    @IBAction func testGroup(_ sender: Any) {
-        // try to get wall 
-        
-        let req = VKApi.request(withMethod: "wall.get", andParameters: ["domain" : "begoman"])
-        req?.execute(resultBlock: {response in
-                    self.qtest(responce: response!)
-                }, errorBlock: { (error) in
-            })
-        
-        
-        
-        
-            }
+    // initilize view on load
     override func viewDidLoad() {
         super.viewDidLoad()
         FIRApp.initialize()
         
-
-        //instanceLoginVC = self
-        
-        /*let vk = VKSdk.initialize(withAppId: "ddf")
-        vk?.register(self)
-        vk?.uiDelegate = self
- */
-        
         sdkInstance!.register(self)
         sdkInstance!.uiDelegate = self
         
-        
-
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func test(_ sender: UIButton) {
-    }
-    @IBAction func LoginWithVK(_ sender: UIButton) {
-       
-        let scope = ["friends", "email"]
-        VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
-            if state == .authorized {
-                NSLog("authorized")
-                
-                
-                self.tryInitFireBaseUser()
-               // self.dismiss(animated: true)
-                
-            } else {
-                VKSdk.authorize(scope)
-            }
-            return
-        })
+    
+    // MARK: VK delegate actions
+    
+    func vkSdkShouldPresent(_ controller: UIViewController!) {
         
-       
+        show(controller, sender: self)
     }
-  
+    
+    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
+        
+    }
+    
     func vkSdkUserAuthorizationFailed() {
-        print("error")
+        print("vkSdkUserAuthorizationFailed error")
         
     }
     
@@ -100,49 +85,133 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         guard result.token != nil else {
             return
         }
-        tryInitFireBaseUser()
-    }
-    
-    func vkSdkShouldPresent(_ controller: UIViewController!) {
-     
-        show(controller, sender: self)
-    }
-    
-    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
         
-    }
-    
-    
-    func tryInitFireBaseUser()  {
-        //
-        let email = VKSdk.accessToken().email
-        
-        if FIRAuth.auth()?.currentUser != nil {
-        } else {
-            // try login before create new user
-            
-            
-            
-            
-            FIRAuth.auth()?.createUser(withEmail: email!, password: "passsssssword", completion: { (user, error) in
-                print(error.debugDescription)
-                if (user != nil) {
-                    
-                }
-                
-            })
-            
-        }
-        let dictionary = NSMutableDictionary();
-        
-        dictionary["VkLogin"] = true
-        dictionary["Email"] = VKSdk.accessToken().email
-        let user = User(dictionary: dictionary)
-        User.currentUser = user
+        userLoginMode = .vkloginMode
+        email = VKSdk.accessToken().email
+        fir_password = String.md5(source: email+password_salt)
 
+        FIRAuth.auth()?.createUser(withEmail: email, password: fir_password, completion: { (user, error) in
+            print(error.debugDescription)
+            if (user != nil) {
+                self.back()
+            }
+        })
+
+    }
+
+    // MARK:Actions
+    
+    // try to login wiht VK
+    @IBAction func touchLoginVKUser(_ sender: UIButton) {
+        // permission to VK account
+        let scope = ["friends", "email"]
+        VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
+            if state == .authorized {
+                NSLog("vk authorized")
+                
+            } else {
+                VKSdk.authorize(scope)
+            }
+            return
+        })
+    }
+  
+    @IBAction func touchLoginExistingUser(_ sender: UIButton) {
+        let em = textUserEmail.text!
+        let ps = textUserPassword.text!
+        
+        if em == "" {
+            // warning
+            messageBox(title: "Ошибка авторизации", text: "Введите корректный email")
+            
+            return
+        }
+        
+        if ps == "" {
+            // warning
+            messageBox(title: "Ошибка авторизации", text: "Поле пароль не может быть пустым")
+            return
+        }
+        
+        password = textUserPassword.text!
+        fir_password = String.md5(source: email+password_salt)
+        email = textUserEmail.text!
+        //
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: fir_password, completion: { (user, error) in
+            print(error.debugDescription)
+            if (user != nil) {
+               self.back()
+            } else {
+                self.messageBox(title: "Ошибка авторизации", text: error!.localizedDescription)
+            }
+            
+        })
+        
+    }
+    
+    @IBAction func touchCreateNewUser(_ sender: UIButton) {
+        
+    }
+    
+   
+    // show queue safe message box
+    func messageBox(title: String, text: String) {
         // leave login page
         DispatchQueue.main.async {
-            self.dismiss(animated: true)
+            let alert = UIAlertController(title: title, message: text, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil ))
+            self.present(alert, animated: true, completion: nil)
         }
     }
+   
 }
+
+
+extension String {
+    static func md5(source : String) -> String {
+        
+        let context = UnsafeMutablePointer<CC_MD5_CTX>.allocate(capacity:1)
+        var digest = Array<UInt8>(repeating: 0, count:Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5_Init(context)
+        CC_MD5_Update(context, source, CC_LONG(source.lengthOfBytes(using: String.Encoding.utf8)))
+        CC_MD5_Final(&digest, context)
+        context.deallocate(capacity: 1)
+        var hexString = ""
+        for byte in digest {
+            hexString += String(format: "%2x", byte)
+        }
+    
+        return hexString
+    }
+}
+
+
+
+/*  EXAMPLE hot to parse json
+ func qtest(responce: VKResponse<VKApiObject>) {
+ // a million hours of sex to get this string
+ if let wall = responce.json as? Dictionary<String,AnyObject> {
+ let test = wall["itesm"]
+ if let items = wall["items"] as? NSArray {
+ @IBAction func touchLoginExistingUser(_ sender: UIButton) {
+ }
+ print(items)
+ }
+ }
+ }
+ 
+ @IBAction func testGroup(_ sender: Any) {
+ @IBOutlet weak var touchLoginExistingUser: UIButton!
+ @IBAction func touchCreateNewUser(_ sender: UIButton) {
+ }
+ // try to get wall
+ 
+ let req = VKApi.request(withMethod: "wall.get", andParameters: ["domain" : "begoman"])
+ req?.addExtraParameters(["count" : 1])
+ req?.execute(resultBlock: {response in
+ self.qtest(responce: response!)
+ }, errorBlock: { (error) in
+ })
+ }
+ */

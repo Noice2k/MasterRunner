@@ -43,17 +43,18 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
         
         appDelegate.splashDelay = false
         
-        var firUser = FIRAuth.auth()?.currentUser
+        let firUser = FIRAuth.auth()?.currentUser
         if firUser == nil {
             // new user
+             self.goToLogin()
         } else {
             // user existed
-            
+            goToApp()
         }
         
         
         
-        if User.currentUser == nil {
+       /* if User.currentUser == nil {
             // show login offer
             self.goToLogin()
         } else {
@@ -62,7 +63,7 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
 
         }
         
-/*        // try to auto login to
+       // try to auto login to
         VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
             if state == .authorized {
                 // auto autotization ok, init user
