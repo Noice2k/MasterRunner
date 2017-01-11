@@ -80,22 +80,43 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         
     }
     
+    func loginAsVKUser()
+    {
+        userLoginMode = .vkloginMode
+        email = VKSdk.accessToken().email
+        var lowcase = email+password_salt;
+        lowcase = lowcase.lowercased()
+        
+        fir_password = String.md5(source: lowcase)
+        
+        // try to login as existing user
+        FIRAuth.auth()?.signIn(withEmail: email, password: fir_password, completion: { (user, error) in
+            do {
+                // if user is exist ( we are sign in correctly
+                if user != nil {
+                    // return to splash MVC
+                    self.back()
+                    
+                } else {
+                    // try to create new user
+                    FIRAuth.auth()?.createUser(withEmail: self.email, password: self.fir_password, completion: { (user, error) in
+                        print(error.debugDescription)
+                        if (user != nil) {
+                            // return to splash MVC
+                            self.back()
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         // try loing to FireBase with VKLogin
         guard result.token != nil else {
             return
         }
-        
-        userLoginMode = .vkloginMode
-        email = VKSdk.accessToken().email
-        fir_password = String.md5(source: email+password_salt)
-
-        FIRAuth.auth()?.createUser(withEmail: email, password: fir_password, completion: { (user, error) in
-            print(error.debugDescription)
-            if (user != nil) {
-                self.back()
-            }
-        })
+        loginAsVKUser()
 
     }
 
@@ -108,6 +129,7 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
         VKSdk.wakeUpSession(scope, complete: {(state: VKAuthorizationState, error: Error?) -> Void in
             if state == .authorized {
                 NSLog("vk authorized")
+                self.loginAsVKUser()
                 
             } else {
                 VKSdk.authorize(scope)
@@ -117,30 +139,33 @@ class LoginViewController: UIViewController , VKSdkDelegate, VKSdkUIDelegate{
     }
   
     @IBAction func touchLoginExistingUser(_ sender: UIButton) {
-        let em = textUserEmail.text!
-        let ps = textUserPassword.text!
+        email = textUserEmail.text!
+        password = textUserPassword.text!
         
-        if em == "" {
+        if email == "" {
             // warning
             messageBox(title: "Ошибка авторизации", text: "Введите корректный email")
             
             return
         }
         
-        if ps == "" {
+        if password == "" {
             // warning
             messageBox(title: "Ошибка авторизации", text: "Поле пароль не может быть пустым")
             return
         }
         
-        password = textUserPassword.text!
-        fir_password = String.md5(source: email+password_salt)
+        var lowcase = email+password_salt;
+        lowcase = lowcase.lowercased()
+        fir_password = String.md5(source: lowcase)
         email = textUserEmail.text!
         //
         
         FIRAuth.auth()?.signIn(withEmail: email, password: fir_password, completion: { (user, error) in
             print(error.debugDescription)
             if (user != nil) {
+                // if user doesnot exist show error and signout from Firebase
+                
                self.back()
             } else {
                 self.messageBox(title: "Ошибка авторизации", text: error!.localizedDescription)

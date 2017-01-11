@@ -65,7 +65,7 @@
         <!--Pro Sport-->
         <scene sceneID="KR4-3U-Y5R">
             <objects>
-                <viewController id="aMR-q0-Ixa" sceneMemberID="viewController">
+                <viewController id="aMR-q0-Ixa" customClass="ProSportViewController" customModule="MasterRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LXz-RY-4A9"/>
                         <viewControllerLayoutGuide type="bottom" id="q41-e8-Y16"/>
@@ -74,137 +74,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="eiy-uS-Stl">
-                                <rect key="frame" x="7" y="20" width="355" height="645"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INu-TI-YJg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="30"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WtB-PC-fhv">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="54"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProSport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0u-X5-bMd">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="r0u-X5-bMd" firstAttribute="leading" secondItem="INu-TI-YJg" secondAttribute="leading" id="1XF-Rn-Lra"/>
+                                    <constraint firstItem="r0u-X5-bMd" firstAttribute="top" secondItem="INu-TI-YJg" secondAttribute="top" id="CpQ-yn-U3v"/>
+                                    <constraint firstAttribute="height" constant="30" id="FXk-fD-g0M"/>
+                                    <constraint firstAttribute="trailing" secondItem="r0u-X5-bMd" secondAttribute="trailing" id="UO6-f8-V9C"/>
+                                    <constraint firstAttribute="bottom" secondItem="r0u-X5-bMd" secondAttribute="bottom" id="eIX-1d-utu"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5t9-qj-RFE">
+                                <rect key="frame" x="10" y="60" width="355" height="548"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qtl-16-x91">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="176"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ProSport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ir-uA-nhR">
-                                                <rect key="frame" x="112" y="8" width="190" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9p-jN-Djq">
-                                        <rect key="frame" x="0.0" y="54" width="346" height="197"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eYn-As-riF">
-                                                <rect key="frame" x="0.0" y="0.0" width="173" height="197"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rx-gg-01G">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="176"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Новости Спорта" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5f-Ik-aBF">
-                                                        <rect key="frame" x="20" y="156" width="131" height="21"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXy-oa-pFu">
+                                                        <rect key="frame" x="8" y="8" width="157" height="153"/>
+                                                        <state key="normal" title="Новости"/>
+                                                    </button>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IT4-0j-CKM">
+                                                        <rect key="frame" x="107" y="45" width="33" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="_red" translatesAutoresizingMaskIntoConstraints="NO" id="ECn-PW-3BV">
-                                                        <rect key="frame" x="19" y="20" width="133" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="MXy-oa-pFu" firstAttribute="centerY" secondItem="7Rx-gg-01G" secondAttribute="centerY" constant="-3.5" id="7qn-3a-UEk"/>
+                                                    <constraint firstItem="MXy-oa-pFu" firstAttribute="centerX" secondItem="7Rx-gg-01G" secondAttribute="centerX" id="LrC-WL-8af"/>
+                                                    <constraint firstItem="MXy-oa-pFu" firstAttribute="width" secondItem="7Rx-gg-01G" secondAttribute="width" constant="-15.5" id="PHQ-vY-YKe"/>
+                                                    <constraint firstItem="MXy-oa-pFu" firstAttribute="height" secondItem="7Rx-gg-01G" secondAttribute="height" constant="-23" id="nxG-K4-ZEh"/>
+                                                </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaP-BQ-7PX">
-                                                <rect key="frame" x="173" y="0.0" width="173" height="197"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="хорошие новости" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9X-Ry-Ev0">
-                                                        <rect key="frame" x="20" y="156" width="141" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="_blue" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-Wj-t1O">
-                                                        <rect key="frame" x="19" y="20" width="133" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vl-HI1">
-                                        <rect key="frame" x="0.0" y="251" width="346" height="197"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EDw-ry-LMF">
-                                                <rect key="frame" x="0.0" y="0.0" width="173" height="197"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Соревнования" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrp-5P-ZWB">
-                                                        <rect key="frame" x="20" y="156" width="117" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="_green" translatesAutoresizingMaskIntoConstraints="NO" id="E2C-s1-8Q9">
-                                                        <rect key="frame" x="19" y="20" width="133" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yC-aq-9kB">
-                                                <rect key="frame" x="173" y="0.0" width="173" height="197"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ProSport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCa-3A-2Dp">
-                                                        <rect key="frame" x="20" y="156" width="69" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="_blue" translatesAutoresizingMaskIntoConstraints="NO" id="Ghn-UP-7hu">
-                                                        <rect key="frame" x="19" y="20" width="133" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWc-Vy-1CP">
+                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="176"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Va-vz-WXf">
-                                        <rect key="frame" x="0.0" y="448" width="346" height="197"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jSn-Q5-Bgl">
+                                        <rect key="frame" x="0.0" y="186" width="355" height="176"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bb-YI-hob">
-                                                <rect key="frame" x="0.0" y="0.0" width="173" height="197"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Фото" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6A-41-Gc4">
-                                                        <rect key="frame" x="20" y="156" width="41" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="_red" translatesAutoresizingMaskIntoConstraints="NO" id="BmR-8n-qGX">
-                                                        <rect key="frame" x="19" y="20" width="133" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPZ-yK-LhG">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="176"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAq-sb-J1l">
-                                                <rect key="frame" x="173" y="0.0" width="173" height="197"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Связаться с нами" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="280-Pi-vkf">
-                                                        <rect key="frame" x="20" y="156" width="141" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="_red" translatesAutoresizingMaskIntoConstraints="NO" id="Pdi-ng-CZK">
-                                                        <rect key="frame" x="19" y="20" width="133" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nE-Wz-vl4">
+                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="176"/>
+                                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QzQ-Qg-kqj">
+                                        <rect key="frame" x="0.0" y="372" width="355" height="176"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCf-4Y-BhQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="176"/>
+                                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlE-B7-38i">
+                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="176"/>
+                                                <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -212,12 +158,21 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="INu-TI-YJg" firstAttribute="centerX" secondItem="jgN-fg-ZtC" secondAttribute="centerX" id="E3h-1I-pPw"/>
+                            <constraint firstItem="5t9-qj-RFE" firstAttribute="top" secondItem="INu-TI-YJg" secondAttribute="bottom" constant="10" id="K5G-7z-vOT"/>
+                            <constraint firstItem="5t9-qj-RFE" firstAttribute="width" secondItem="jgN-fg-ZtC" secondAttribute="width" constant="-20" id="LlC-jk-3Cp"/>
+                            <constraint firstItem="q41-e8-Y16" firstAttribute="top" secondItem="5t9-qj-RFE" secondAttribute="bottom" constant="10" id="VOw-g7-7d8"/>
+                            <constraint firstItem="5t9-qj-RFE" firstAttribute="centerX" secondItem="jgN-fg-ZtC" secondAttribute="centerX" id="dp9-0P-wSM"/>
+                            <constraint firstItem="INu-TI-YJg" firstAttribute="top" secondItem="LXz-RY-4A9" secondAttribute="bottom" id="iQb-lZ-jcd"/>
+                            <constraint firstItem="INu-TI-YJg" firstAttribute="width" secondItem="jgN-fg-ZtC" secondAttribute="width" id="mth-E3-lxa"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Pro Sport" image="ic_vk_ios7_activity_logo" badgeValue="1" id="dvu-rM-otH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwc-3Q-R4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298.39999999999998" y="-864.01799100449784"/>
+            <point key="canvasLocation" x="-298.39999999999998" y="-795.6521739130435"/>
         </scene>
         <!--#Школа бега-->
         <scene sceneID="L0x-h5-Eit">
@@ -484,8 +439,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="или зайтите в приложение  через email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkd-fv-wq6">
-                                <rect key="frame" x="92" y="339" width="194" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="или создайте свой аккаунт указав  свой email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkd-fv-wq6">
+                                <rect key="frame" x="71" y="339" width="236" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -539,8 +494,6 @@
         <image name="BlueBtn_pressed" width="9" height="33"/>
         <image name="LogoImage" width="236" height="394"/>
         <image name="VKLoging" width="108" height="22"/>
-        <image name="_blue" width="22" height="22"/>
-        <image name="_green" width="22" height="22"/>
         <image name="_red" width="22" height="22"/>
         <image name="ic_deleteattach" width="24" height="24"/>
         <image name="ic_vk_ios7_activity_logo" width="60" height="60"/>
