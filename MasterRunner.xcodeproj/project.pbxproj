@@ -11,6 +11,8 @@
 		780705B41E11771400A43CDB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780705B31E11771400A43CDB /* User.swift */; };
 		783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */; };
 		785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */; };
+		785BF3201E2675A400EF4B2E /* ProSportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF31F1E2675A400EF4B2E /* ProSportTableViewController.swift */; };
+		785BF3261E2678B200EF4B2E /* ProSportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF3251E2678B200EF4B2E /* ProSportTableViewCell.swift */; };
 		786314011E01370A001521A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786314001E01370A001521A5 /* SplashViewController.swift */; };
 		7890A0DD1E150F7300119818 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7890A0DC1E150F7300119818 /* GoogleService-Info.plist */; };
 		7896B1E31E13B2080004BBDF /* FirebaseLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7896B1E21E13B2080004BBDF /* FirebaseLoginDelegate.swift */; };
@@ -50,6 +52,8 @@
 		783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		785BF3181E251CBC00EF4B2E /* MasterRunner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MasterRunner-Bridging-Header.h"; sourceTree = "<group>"; };
 		785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProSportViewController.swift; sourceTree = "<group>"; };
+		785BF31F1E2675A400EF4B2E /* ProSportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProSportTableViewController.swift; sourceTree = "<group>"; };
+		785BF3251E2678B200EF4B2E /* ProSportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProSportTableViewCell.swift; sourceTree = "<group>"; };
 		786314001E01370A001521A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasterRunner.entitlements; sourceTree = "<group>"; };
 		7890A0DC1E150F7300119818 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -134,10 +138,12 @@
 		789D462D1E011A290009FB74 /* MasterRunner */ = {
 			isa = PBXGroup;
 			children = (
+				785BF3251E2678B200EF4B2E /* ProSportTableViewCell.swift */,
 				785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */,
 				7890A0DC1E150F7300119818 /* GoogleService-Info.plist */,
 				7896B1E21E13B2080004BBDF /* FirebaseLoginDelegate.swift */,
 				780705B31E11771400A43CDB /* User.swift */,
+				785BF31F1E2675A400EF4B2E /* ProSportTableViewController.swift */,
 				788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */,
 				78F0C6411E01299000316BDF /* SupportFiles */,
 				789D462E1E011A290009FB74 /* AppDelegate.swift */,
@@ -462,6 +468,8 @@
 				789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */,
 				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
 				78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */,
+				785BF3261E2678B200EF4B2E /* ProSportTableViewCell.swift in Sources */,
+				785BF3201E2675A400EF4B2E /* ProSportTableViewController.swift in Sources */,
 				780705B41E11771400A43CDB /* User.swift in Sources */,
 				785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */,
 			);
