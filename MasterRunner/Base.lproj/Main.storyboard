@@ -158,13 +158,13 @@
         <!--Pro Sport Table View Controller-->
         <scene sceneID="G4s-Zr-I5T">
             <objects>
-                <tableViewController id="74H-dS-8QY" customClass="ProSportTableViewController" customModule="MasterRunner" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="74H-dS-8QY" customClass="ProSportTableViewController" customModule="MasterRunner" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eIE-f3-Za1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProSportNewsCell" selectionStyle="default" indentationWidth="10" id="Fon-Ac-N53" customClass="ProSportTableViewCell" customModule="MasterRunner">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProSportNewsCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProSportNewsCell" id="Fon-Ac-N53" customClass="ProSportTableViewCell" customModule="MasterRunner">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fon-Ac-N53" id="G4l-5l-gPI">

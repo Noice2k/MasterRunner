@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
-class ProSportTableViewController: UITableViewController {
+class ProSportTableViewController: UITableViewController
+{
 
+    // just for test, to understand how it work
+    func processingNewsRequest(responce: VKResponse<VKApiObject>) {
+        // a million hours of sex to get this string
+        if let wall = responce.json as? Dictionary<String,AnyObject> {
+            if let items = wall["items"] as? NSArray {
+                
+                print(items)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // load 20 messages
+        let req = VKApi.request(withMethod: "wall.get", andParameters: ["domain" : "begoman"])
+        req?.addExtraParameters(["count" : 10])
+        req?.execute(resultBlock: {response in
+            self.processingNewsRequest(responce: response!)
+        }, errorBlock: { (error) in
+        })
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -39,13 +59,13 @@ class ProSportTableViewController: UITableViewController {
         return 20
     }
 
-    
+    // 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProSportNewsCell") as! ProSportTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProSportNewsCell",for: indexPath)  as! ProSportTableViewCell
         
 
         // Configure the cell...
-        cell.detailTextLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = "\(indexPath.row)"
 
         return cell
     }
