@@ -17,7 +17,9 @@ class ProSportTableViewController: UITableViewController
         // a million hours of sex to get this string
         if let wall = responce.json as? Dictionary<String,AnyObject> {
             if let items = wall["items"] as? NSArray {
-                
+                let item = items[0] as! Dictionary<String,AnyObject>
+                ProSportNews.proSportNews!._News += [ProSportNewsItem(dict: item)]
+                self.tableView.reloadData()
                 print(items)
             }
         }
@@ -56,7 +58,7 @@ class ProSportTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 20
+        return ProSportNews._proSportNews!._News.count
     }
 
     // 
