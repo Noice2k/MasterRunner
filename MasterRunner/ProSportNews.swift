@@ -10,8 +10,23 @@ import UIKit
 
 class ProSportNewsItem{
     init(dict: Dictionary<String,AnyObject>) {
-        
+        newsText = ""
+        if let text = dict["text"] as! String?{
+            newsText = text
+        }
+        if let attachments = dict["attachments"] as? [[String: Any]] {
+            for attachment in attachments {
+                if let type = attachment["type"] as! String? {
+                    if type == "photo" {
+                        print(attachment)
+                        
+                    }
+                }
+            }
+        }
     }
+    
+    var newsText : String
     
 }
 

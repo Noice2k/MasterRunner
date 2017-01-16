@@ -9,7 +9,7 @@
 import UIKit
 import VK_ios_sdk
 
-class ProSportTableViewController: UITableViewController
+class ProSportNewsTableViewController: UITableViewController
 {
 
     // just for test, to understand how it work
@@ -17,8 +17,9 @@ class ProSportTableViewController: UITableViewController
         // a million hours of sex to get this string
         if let wall = responce.json as? Dictionary<String,AnyObject> {
             if let items = wall["items"] as? NSArray {
-                let item = items[0] as! Dictionary<String,AnyObject>
-                ProSportNews.proSportNews!._News += [ProSportNewsItem(dict: item)]
+                for item in items {
+                    ProSportNews.proSportNews!._News += [ProSportNewsItem(dict: item as! Dictionary<String,AnyObject> )]
+                }
                 self.tableView.reloadData()
                 print(items)
             }
@@ -67,7 +68,7 @@ class ProSportTableViewController: UITableViewController
         
 
         // Configure the cell...
-        cell.textLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = ProSportNews.proSportNews?._News[indexPath.item].newsText
 
         return cell
     }
