@@ -37,8 +37,8 @@ class SplashViewController: UIViewController, FirebaseLoginDelegate {
     
     func goToApp() {
         //
-         var v = ProSportNews.proSportNews 
-         self.performSegue(withIdentifier: "ShowMainTabWindow", sender: self)
+        _ = ProSportNews.proSportNews
+        self.performSegue(withIdentifier: "ShowMainTabWindow", sender: self)
     }
     
     func continueLogin() {

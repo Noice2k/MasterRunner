@@ -10,6 +10,7 @@
 		54E2BFD580781F68447CD26B /* Pods_MasterRunner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3A9043BDC4BD1ACBE53E9A /* Pods_MasterRunner.framework */; };
 		780705B41E11771400A43CDB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780705B31E11771400A43CDB /* User.swift */; };
 		783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */; };
+		785835771E2F453C0000EB66 /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785835761E2F453C0000EB66 /* VKPhoto.swift */; };
 		785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */; };
 		785BF3201E2675A400EF4B2E /* ProSportNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF31F1E2675A400EF4B2E /* ProSportNewsTableViewController.swift */; };
 		785BF3261E2678B200EF4B2E /* ProSportNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF3251E2678B200EF4B2E /* ProSportNewsTableViewCell.swift */; };
@@ -51,6 +52,7 @@
 		5C8F943ADD388B62227A218A /* Pods_MasterRunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		780705B31E11771400A43CDB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		785835761E2F453C0000EB66 /* VKPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		785BF3181E251CBC00EF4B2E /* MasterRunner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MasterRunner-Bridging-Header.h"; sourceTree = "<group>"; };
 		785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProSportViewController.swift; sourceTree = "<group>"; };
 		785BF31F1E2675A400EF4B2E /* ProSportNewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProSportNewsTableViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 			name = ProSportNews;
 			sourceTree = "<group>";
 		};
+		785835781E30F1170000EB66 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		789D46221E011A290009FB74 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				785835751E2CA72E0000EB66 /* ProSportNews */,
+				785835781E30F1170000EB66 /* Settings */,
 				785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */,
 				7890A0DC1E150F7300119818 /* GoogleService-Info.plist */,
 				7896B1E21E13B2080004BBDF /* FirebaseLoginDelegate.swift */,
@@ -158,7 +169,6 @@
 				788ECB0A1E0C1EA10097CC8B /* MasterRunner.entitlements */,
 				78F0C6411E01299000316BDF /* SupportFiles */,
 				789D462E1E011A290009FB74 /* AppDelegate.swift */,
-				78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */,
 				789D46301E011A290009FB74 /* ViewController.swift */,
 				789D46351E011A290009FB74 /* Assets.xcassets */,
 				789D463A1E011A290009FB74 /* Info.plist */,
@@ -190,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				826E4AE41E2BFCD10008B405 /* ProSportNews.swift */,
+				785835761E2F453C0000EB66 /* VKPhoto.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,9 +294,16 @@
 				TargetAttributes = {
 					789D462A1E011A290009FB74 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = PGLRQHAD7Y;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
 							com.apple.SafariKeychain = {
 								enabled = 0;
 							};
@@ -492,6 +510,7 @@
 				780705B41E11771400A43CDB /* User.swift in Sources */,
 				785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */,
 				826E4AE51E2BFCD10008B405 /* ProSportNews.swift in Sources */,
+				785835771E2F453C0000EB66 /* VKPhoto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,7 +656,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PGLRQHAD7Y;
 				INFOPLIST_FILE = MasterRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -657,7 +676,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shumaher2000@mail.ru (76Y6KZ32QF)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PGLRQHAD7Y;
 				INFOPLIST_FILE = MasterRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

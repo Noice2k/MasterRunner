@@ -9,35 +9,15 @@
 import UIKit
 import VK_ios_sdk
 
-class ProSportNewsTableViewController: UITableViewController
+class ProSportNewsTableViewController: UITableViewController,ProSportNewsDelegate
 {
-
-    // just for test, to understand how it work
-    func processingNewsRequest(responce: VKResponse<VKApiObject>) {
-        // a million hours of sex to get this string
-        if let wall = responce.json as? Dictionary<String,AnyObject> {
-            if let items = wall["items"] as? NSArray {
-                for item in items {
-                    ProSportNews.proSportNews!._News += [ProSportNewsItem(dict: item as! Dictionary<String,AnyObject> )]
-                }
-                self.tableView.reloadData()
-                print(items)
-            }
-        }
-    }
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProSportNews.proSportNews?.delegate = self
+        ProSportNews.proSportNews?.getNews();
         
-        // load 20 messages
-        let req = VKApi.request(withMethod: "wall.get", andParameters: ["domain" : "begoman"])
-        req?.addExtraParameters(["count" : 10])
-        req?.execute(resultBlock: {response in
-            self.processingNewsRequest(responce: response!)
-        }, errorBlock: { (error) in
-        })
-
+     
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -45,6 +25,11 @@ class ProSportNewsTableViewController: UITableViewController
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    
+    func onEndUpdateNews(){
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,15 +50,40 @@ class ProSportNewsTableViewController: UITableViewController
     // 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProSportNewsCell",for: indexPath)  as! ProSportTableViewCell
+        let news = ProSportNews.proSportNews?._News[indexPath.row]
+        var image : UIImage?
+        if (news?.photos.count)! > 2 {
+            image = news?.photos[2].images["photo_75"]!
+        } else {
+            image = nil
+        }
+        cell.setPreviewImage(image: image,index:2)
         
+        if (news?.photos.count)! > 1 {
+            image = news?.photos[1].images["photo_75"]!
+        } else {
+            image = nil
+        }
+        cell.setPreviewImage(image: image,index:1)
+        
+        if (news?.photos.count)! > 0 {
+            image = news?.photos[0].images["photo_75"]!
+        } else {
+            image = nil
+        }
+        cell.setPreviewImage(image: image,index:0)
 
+        cell.newsText.text = news?.newsText
         // Configure the cell...
-        cell.textLabel?.text = ProSportNews.proSportNews?._News[indexPath.item].newsText
+        //cell.textLabel?.text = ProSportNews.proSportNews?._News[indexPath.item].newsText
 
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120.0
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

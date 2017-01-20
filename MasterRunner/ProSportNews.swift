@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 class ProSportNewsItem{
     init(dict: Dictionary<String,AnyObject>) {
@@ -18,7 +19,8 @@ class ProSportNewsItem{
             for attachment in attachments {
                 if let type = attachment["type"] as! String? {
                     if type == "photo" {
-                        print(attachment)
+                        photos += [VKPhoto(dict: attachment["photo"] as! Dictionary<String,AnyObject>) ]
+                        print(attachment["photo"]!)
                         
                     }
                 }
@@ -27,10 +29,47 @@ class ProSportNewsItem{
     }
     
     var newsText : String
+    var photos =  [VKPhoto]()
     
 }
 
+// deletage
+protocol ProSportNewsDelegate {
+    // update data after all news
+    func onEndUpdateNews()
+}
+
 class ProSportNews{
+    
+    // just for test, to understand how it work
+    func processingNewsRequest(responce: VKResponse<VKApiObject>) {
+        // a million hours of sex to get this string
+        if let wall = responce.json as? Dictionary<String,AnyObject> {
+            if let items = wall["items"] as? NSArray {
+                for item in items {
+                    ProSportNews.proSportNews!._News += [ProSportNewsItem(dict: item as! Dictionary<String,AnyObject> )]
+                }
+                DispatchQueue.main.async {
+                    self.delegate?.onEndUpdateNews()
+                }
+            }
+        }
+    }
+    
+    
+    func getNews() {
+        // load 20 messages
+        let req = VKApi.request(withMethod: "wall.get", andParameters: ["domain" : "schoolprosport60"])
+        req?.addExtraParameters(["count" : 20])
+        req?.execute(resultBlock: {response in
+            self.processingNewsRequest(responce: response!)
+        }, errorBlock: { (error) in
+        })
+
+    }
+    
+    
+    var delegate: ProSportNewsDelegate?
     
     var dictionary: NSMutableDictionary?
     
