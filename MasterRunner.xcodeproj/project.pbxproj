@@ -23,6 +23,10 @@
 		789D46361E011A290009FB74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 789D46351E011A290009FB74 /* Assets.xcassets */; };
 		789D464F1E011A290009FB74 /* MasterRunnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D464E1E011A290009FB74 /* MasterRunnerUITests.swift */; };
 		78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */; };
+		78CDB6BE1E4076E70062D628 /* BTSourceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6BD1E4076E70062D628 /* BTSourceList.swift */; };
+		78CDB6C01E407D130062D628 /* BTDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6BF1E407D130062D628 /* BTDeviceCell.swift */; };
+		78CDB6C21E4392BC0062D628 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6C11E4392BC0062D628 /* MapView.swift */; };
+		78CDB6C71E43943C0062D628 /* TrainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6C61E43943C0062D628 /* TrainPageViewController.swift */; };
 		826E4AE51E2BFCD10008B405 /* ProSportNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826E4AE41E2BFCD10008B405 /* ProSportNews.swift */; };
 		D8862EAA9E41659C04863153 /* Pods_MasterRunnerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C77B2E0E9D53617626E80D /* Pods_MasterRunnerUITests.framework */; };
 		F036E749D33AEFB8CC03B6A5 /* Pods_MasterRunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8F943ADD388B62227A218A /* Pods_MasterRunnerTests.framework */; };
@@ -72,6 +76,10 @@
 		789D464E1E011A290009FB74 /* MasterRunnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterRunnerUITests.swift; sourceTree = "<group>"; };
 		789D46501E011A290009FB74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		78CDB6BD1E4076E70062D628 /* BTSourceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTSourceList.swift; sourceTree = "<group>"; };
+		78CDB6BF1E407D130062D628 /* BTDeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTDeviceCell.swift; sourceTree = "<group>"; };
+		78CDB6C11E4392BC0062D628 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		78CDB6C61E43943C0062D628 /* TrainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainPageViewController.swift; sourceTree = "<group>"; };
 		7C3A9043BDC4BD1ACBE53E9A /* Pods_MasterRunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		826E4AE41E2BFCD10008B405 /* ProSportNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProSportNews.swift; sourceTree = "<group>"; };
 		8F1F70D075233BC9ECD354AD /* Pods-MasterRunnerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasterRunnerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasterRunnerUITests/Pods-MasterRunnerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +139,8 @@
 		785835781E30F1170000EB66 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				78CDB6BF1E407D130062D628 /* BTDeviceCell.swift */,
+				78CDB6BD1E4076E70062D628 /* BTSourceList.swift */,
 				78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */,
 			);
 			name = Settings;
@@ -162,6 +172,7 @@
 			children = (
 				785835751E2CA72E0000EB66 /* ProSportNews */,
 				785835781E30F1170000EB66 /* Settings */,
+				78CDB6C31E4393AE0062D628 /* TrainPage */,
 				785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */,
 				7890A0DC1E150F7300119818 /* GoogleService-Info.plist */,
 				7896B1E21E13B2080004BBDF /* FirebaseLoginDelegate.swift */,
@@ -186,6 +197,15 @@
 				789D46501E011A290009FB74 /* Info.plist */,
 			);
 			path = MasterRunnerUITests;
+			sourceTree = "<group>";
+		};
+		78CDB6C31E4393AE0062D628 /* TrainPage */ = {
+			isa = PBXGroup;
+			children = (
+				78CDB6C11E4392BC0062D628 /* MapView.swift */,
+				78CDB6C61E43943C0062D628 /* TrainPageViewController.swift */,
+			);
+			name = TrainPage;
 			sourceTree = "<group>";
 		};
 		78F0C6411E01299000316BDF /* SupportFiles */ = {
@@ -501,13 +521,17 @@
 			files = (
 				7896B1E31E13B2080004BBDF /* FirebaseLoginDelegate.swift in Sources */,
 				786314011E01370A001521A5 /* SplashViewController.swift in Sources */,
+				78CDB6C71E43943C0062D628 /* TrainPageViewController.swift in Sources */,
 				789D46311E011A290009FB74 /* ViewController.swift in Sources */,
+				78CDB6C01E407D130062D628 /* BTDeviceCell.swift in Sources */,
 				789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */,
 				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
 				78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */,
+				78CDB6C21E4392BC0062D628 /* MapView.swift in Sources */,
 				785BF3261E2678B200EF4B2E /* ProSportNewsTableViewCell.swift in Sources */,
 				785BF3201E2675A400EF4B2E /* ProSportNewsTableViewController.swift in Sources */,
 				780705B41E11771400A43CDB /* User.swift in Sources */,
+				78CDB6BE1E4076E70062D628 /* BTSourceList.swift in Sources */,
 				785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */,
 				826E4AE51E2BFCD10008B405 /* ProSportNews.swift in Sources */,
 				785835771E2F453C0000EB66 /* VKPhoto.swift in Sources */,
