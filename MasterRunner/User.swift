@@ -71,7 +71,8 @@ class User {
                if let _ = dictionary?["bt_hb_device_name"] {
                 _blueToothHBDevice = BTDevice()
                 _blueToothHBDevice?.name = dictionary?["bt_hb_device_name"] as! String
-                _blueToothHBDevice?.uuid = UUID(uuidString : (dictionary?["bt_hb_device_name"] as? String)!)
+                let uuid = dictionary?["bt_hb_device_uuid"] as! String
+                _blueToothHBDevice?.uuid = UUID(uuidString : uuid)
             }
             return _blueToothHBDevice
         }

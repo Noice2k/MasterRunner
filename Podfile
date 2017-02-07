@@ -10,6 +10,7 @@ pod ‘VK-ios-sdk’
 pod ‘Firebase/Core’
 pod ‘Firebase/Auth’
 pod ‘Firebase/Database’
+pod 'Mapbox-iOS-SDK', '~> 3.3.4'
   target 'MasterRunnerTests' do
     inherit! :search_paths
     # Pods for testing
