@@ -29,6 +29,7 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
         if heartBeatDevice != nil {
             // start connecting to bluetooth HB device
             centralManager = CBCentralManager.init(delegate: self, queue: nil)
+            BTFindDeviceLoop();
         }
     }
 
@@ -76,10 +77,13 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
             
            
             if (lastPeripherals?.count)! > 0 {
-                for device in lastPeripherals! {
+                for peripheral in lastPeripherals! {
                     
-                    if device.identifier == heartBeatDevice?.uuid {
+                    if peripheral.identifier == heartBeatDevice?.uuid {
                         // TODO: connect to device
+                        connectingPeripheral = peripheral
+                        connectingPeripheral.delegate = self
+                        centralManager?.connect(connectingPeripheral, options: nil)
                     }
                 }
             }
@@ -113,9 +117,38 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
     // discover all services for
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices(nil)
+        print("didconnect")
     }
+    // disconnect device:
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("disconnected")
+        connectingPeripheral = nil
+        // reconect 
+        BTFindDeviceLoop()
+        
+    }
+
+    
     
     // MARK: - CBPeripheralDelegate
+    
+    
+    func BTFindDeviceLoop() {
+        if self.heartBeatDevice != nil {
+            if connectingPeripheral == nil {
+                
+                let lastPeripherals = centralManager?.retrieveConnectedPeripherals(withServices: serviseUUIDs)
+                
+                centralManager?.scanForPeripherals(withServices: serviseUUIDs, options: nil)
+                // run self in 5 minutes
+                let dispathTime = DispatchTime.now() + .seconds(5)
+                DispatchQueue.main.asyncAfter(deadline: dispathTime, execute: {
+                    self.BTFindDeviceLoop()
+                })
+            }
+        }
+    }
+    
     // the peripheral device
     var connectingPeripheral : CBPeripheral!
     
@@ -149,20 +182,23 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
         }
     }
     
+    // callback function - the peripheral return same data, we need processing it
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let actualError = error {
             print(actualError)
         } else
         {
-            print(characteristic.value!)
+            
+            processingPeripheralData(heartRateData: characteristic.value!)
+            //print(characteristic.value!)
         }
     }
     
-    /*
-    func update(heartRateData:NSData){
+    
+    func processingPeripheralData(heartRateData: Data){
         
-        var buffer = [UInt8](count: heartRateData.length, repeatedValue: 0x00)
-        heartRateData.getBytes(&buffer, length: buffer.count)
+        var buffer = [UInt8](repeating:0, count:heartRateData.count)
+        heartRateData.copyBytes(to: &buffer, count: heartRateData.count)
         
         var bpm:UInt16?
         if (buffer.count >= 2){
@@ -175,11 +211,9 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
         }
         
         if let actualBpm = bpm{
-            println(actualBpm)
+            print("\(bpm!)")
         }else {
-            println(bpm)
+            print("\(bpm!)")
         }
     }
-    
- */
  }
