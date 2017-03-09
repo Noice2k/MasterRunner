@@ -8,10 +8,17 @@
 
 import UIKit
 import Mapbox
-import CoreBluetooth
+import CoreData
 
-class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralManagerDelegate, CBPeripheralDelegate {
 
+class TrainPageViewController: BTViewController,MGLMapViewDelegate {
+
+    
+    // MARK: model
+    
+    var current_core_data_train : TrainCoreData?
+    // MARK: - coredata
+    var persistentContainer : NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     
     
@@ -22,15 +29,6 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
         mapView.setZoomLevel(14, animated: false)
         mapView.delegate = self
         // Do any additional setup after loading the view.
-        
-        heartBeatDevice = User.currentUser?.blueToothHBDevice
-        
-        
-        if heartBeatDevice != nil {
-            // start connecting to bluetooth HB device
-            centralManager = CBCentralManager.init(delegate: self, queue: nil)
-            BTFindDeviceLoop();
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,11 +36,41 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var mapView: MGLMapView!
-
+   
+    @IBOutlet weak var bmpLabel: UILabel!
+    @IBOutlet weak var mapView: MapView!
     
+    @IBOutlet weak var buttonStop: BorderButton!
+    @IBOutlet weak var buttonStart: BorderButton!
     // Do any additional setup after loading the view.
     
+    
+    @IBAction func onClickStopTrain(_ sender: UIButton) {
+        buttonStop.isHidden = true
+        buttonStart.isHidden = false
+        //tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isUserInteractionEnabled = true
+    }
+    
+    @IBAction func onClickStartTrain(_ sender: UIButton) {
+        buttonStop.isHidden = false
+        buttonStart.isHidden = true
+        tabBarController?.tabBar.isUserInteractionEnabled = false
+        
+        current_core_data_train = TrainCoreData.startTrain(inPersistentContainer: persistentContainer!)
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+     
+        fetchcount()
+    }
+    
+    func fetchcount()
+    {
+        let request  = NSFetchRequest<NSFetchRequestResult>(entityName: "TrainCoreData")
+        if let results =  (try? persistentContainer?.viewContext.fetch(request)) {
+            
+            print("found \(results?.count) records")
+        }
+    }
     
     /*
     // MARK: - Navigation
@@ -54,166 +82,8 @@ class TrainPageViewController: UIViewController,MGLMapViewDelegate,CBCentralMana
     }
     */
 
-    
-    // MARK: - CBCentralManagerDelegate
-    
-    // main manager
-    var centralManager : CBCentralManager?
-    // heart beat device attributes
-    var heartBeatDevice : BTDevice?
-    // servise type
-    let serviseUUIDs:[CBUUID] = [CBUUID(string:"180D")]
-    
-    // device change state
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        
-        switch central.state {
-        case CBManagerState.poweredOff:
-            print("poweredOff")
-        case CBManagerState.poweredOn:
-            print("poweredOn")
-            //
-            let lastPeripherals = centralManager?.retrieveConnectedPeripherals(withServices: serviseUUIDs)
-            
-           
-            if (lastPeripherals?.count)! > 0 {
-                for peripheral in lastPeripherals! {
-                    
-                    if peripheral.identifier == heartBeatDevice?.uuid {
-                        // TODO: connect to device
-                        connectingPeripheral = peripheral
-                        connectingPeripheral.delegate = self
-                        centralManager?.connect(connectingPeripheral, options: nil)
-                    }
-                }
-            }
-            else{
-                if heartBeatDevice != nil {
-                    // TODO: add sleep at least 5 seconds to reconnect to save battery
-                    // start observing connecting to bluetooth HB device
-                    centralManager?.scanForPeripherals(withServices: serviseUUIDs, options: nil)
-                }
-                
-            }
-        case CBManagerState.unsupported:
-            print("unsupported")
-        default:
-            print("unknow")
-        }
+    override func setBeatPerMinute(heartrate : UInt16 , timestamp: Date) {
+        bmpLabel.text = "\(heartrate)"
     }
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if peripheral.identifier == self.heartBeatDevice!.uuid! {
-            
-            // TODO: connect to device
-            print(heartBeatDevice!.uuid!)
-            
-            connectingPeripheral = peripheral
-            connectingPeripheral.delegate = self
-            centralManager?.connect(connectingPeripheral, options: nil)
-        }
-        
-    }
-    // discover all services for
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        peripheral.discoverServices(nil)
-        print("didconnect")
-    }
-    // disconnect device:
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("disconnected")
-        connectingPeripheral = nil
-        // reconect 
-        BTFindDeviceLoop()
-        
-    }
-
-    
-    
-    // MARK: - CBPeripheralDelegate
-    
-    
-    func BTFindDeviceLoop() {
-        if self.heartBeatDevice != nil {
-            if connectingPeripheral == nil {
-                
-                let lastPeripherals = centralManager?.retrieveConnectedPeripherals(withServices: serviseUUIDs)
-                
-                centralManager?.scanForPeripherals(withServices: serviseUUIDs, options: nil)
-                // run self in 5 minutes
-                let dispathTime = DispatchTime.now() + .seconds(5)
-                DispatchQueue.main.asyncAfter(deadline: dispathTime, execute: {
-                    self.BTFindDeviceLoop()
-                })
-            }
-        }
-    }
-    
-    // the peripheral device
-    var connectingPeripheral : CBPeripheral!
-    
-    // 
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        if let actualError = error {
-            print(actualError)
-        } else {
-            for service in peripheral.services as [CBService]! {
-                peripheral.discoverCharacteristics(nil, for: service)
-            }
-        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        if let actualError = error {
-            print(actualError)
-        } else {
-            if service.uuid == serviseUUIDs[0] {
-                for charasteristic in service.characteristics as [CBCharacteristic]! {
-                    switch charasteristic.uuid.uuidString  {
-                    case "2A37":
-                        // 
-                        print("found")
-                        peripheral.setNotifyValue(true, for: charasteristic)
-                    default:
-                        print(charasteristic.uuid.uuidString)
-                    }
-                }
-            }
-        }
-    }
-    
-    // callback function - the peripheral return same data, we need processing it
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if let actualError = error {
-            print(actualError)
-        } else
-        {
-            
-            processingPeripheralData(heartRateData: characteristic.value!)
-            //print(characteristic.value!)
-        }
-    }
-    
-    
-    func processingPeripheralData(heartRateData: Data){
-        
-        var buffer = [UInt8](repeating:0, count:heartRateData.count)
-        heartRateData.copyBytes(to: &buffer, count: heartRateData.count)
-        
-        var bpm:UInt16?
-        if (buffer.count >= 2){
-            if (buffer[0] & 0x01 == 0){
-                bpm = UInt16(buffer[1]);
-            }else {
-                bpm = UInt16(buffer[1]) << 8
-                bpm =  bpm! | UInt16(buffer[2])
-            }
-        }
-        
-        if let actualBpm = bpm{
-            print("\(bpm!)")
-        }else {
-            print("\(bpm!)")
-        }
-    }
  }
