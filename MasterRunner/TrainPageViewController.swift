@@ -17,6 +17,7 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
     // MARK: model
     
     var current_core_data_train : TrainCoreData?
+    
     // MARK: - coredata
     var persistentContainer : NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -56,7 +57,7 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
         buttonStop.isHidden = false
         buttonStart.isHidden = true
         tabBarController?.tabBar.isUserInteractionEnabled = false
-        
+        fetchcount()
         current_core_data_train = TrainCoreData.startTrain(inPersistentContainer: persistentContainer!)
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
      
@@ -68,7 +69,14 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
         let request  = NSFetchRequest<NSFetchRequestResult>(entityName: "TrainCoreData")
         if let results =  (try? persistentContainer?.viewContext.fetch(request)) {
             
-            print("found \(results?.count) records")
+            
+            let fr = results?.last as? TrainCoreData
+            if let data = fr?.heartbeat_data as NSData? {
+                let d = data as Data
+                var str = NSString(data: d, encoding: String.Encoding.utf8.rawValue)
+                print("\(str)")
+            }
+            print("found \(fr?.heartbeat_data?.bytes) records")
         }
     }
     
@@ -82,8 +90,12 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
     }
     */
 
-    override func setBeatPerMinute(heartrate : UInt16 , timestamp: Date) {
+    override func setBeatPerMinute(heartrate : Int , timestamp: NSDate) {
         bmpLabel.text = "\(heartrate)"
+        if (current_core_data_train != nil)
+        {
+            current_core_data_train?.addHeartBeat(hbvalue: heartrate, timestamp: timestamp)
+        }
     }
     
  }

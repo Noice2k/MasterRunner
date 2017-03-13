@@ -160,7 +160,7 @@ class BTViewController : UIViewController, CBCentralManagerDelegate, CBPeriphera
         } else
         {
             //  print("state: \(connectingPeripheral.state.rawValue)")
-            let timestamp = Date()
+            let timestamp = NSDate()
             
             let heartRateData = characteristic.value!
             var buffer = [UInt8](repeating:0, count:heartRateData.count)
@@ -175,14 +175,14 @@ class BTViewController : UIViewController, CBCentralManagerDelegate, CBPeriphera
                     bpm =  bpm! | UInt16(buffer[2])
                 }
             }
-            setBeatPerMinute(heartrate: bpm!, timestamp: timestamp)
+            setBeatPerMinute(heartrate: Int(bpm!), timestamp: timestamp)
             //print(characteristic.value!)
         }
     }
     
     
     
-    func setBeatPerMinute(heartrate : UInt16 , timestamp: Date) {
+    func setBeatPerMinute(heartrate : Int , timestamp: NSDate) {
         print("")
     }
 }
