@@ -9,9 +9,9 @@
 import UIKit
 import Mapbox
 import CoreData
+import CoreLocation
 
-
-class TrainPageViewController: BTViewController,MGLMapViewDelegate {
+class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationManagerDelegate {
 
     
     // MARK: model
@@ -21,7 +21,7 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
     // MARK: - coredata
     var persistentContainer : NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
-    
+    var locationMamager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,17 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
         mapView.setCenter(CLLocationCoordinate2D(latitude: 57.8220, longitude: 28.3317), animated: false)
         mapView.setZoomLevel(14, animated: false)
         mapView.delegate = self
-        // Do any additional setup after loading the view.
+        mapView.showsUserLocation = true
+        
+        // setup location manager
+        self.locationMamager.requestAlwaysAuthorization()
+        self.locationMamager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled(){
+            locationMamager.delegate = self
+            locationMamager.desiredAccuracy = kCLLocationAccuracyBest
+            locationMamager.startUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +60,7 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
         buttonStop.isHidden = true
         buttonStart.isHidden = false
         //tabBarController?.tabBar.isHidden = false
+        current_core_data_train?.closeHeartBeat()
         tabBarController?.tabBar.isUserInteractionEnabled = true
     }
     
@@ -57,11 +68,11 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
         buttonStop.isHidden = false
         buttonStart.isHidden = true
         tabBarController?.tabBar.isUserInteractionEnabled = false
-        fetchcount()
+        
         current_core_data_train = TrainCoreData.startTrain(inPersistentContainer: persistentContainer!)
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
      
-        fetchcount()
+        
     }
     
     func fetchcount()
@@ -79,6 +90,48 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate {
             print("found \(fr?.heartbeat_data?.bytes) records")
         }
     }
+    
+    
+    // MARK: location manager routing
+    
+    // processing the location change
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for loc in locations {
+            mapView.longitude = loc.coordinate.longitude
+            mapView.latitude  = loc.coordinate.latitude
+            
+            /*// add coordinate to Tracker
+            if trackingUser {
+                if distanceForMarker <= totalDistance {
+                    // add  annotation with point
+                    let annotation = MGLPointAnnotation()
+                    annotation.coordinate =  loc.coordinate
+                    annotation.title = "\(Int(distanceForMarker/1000))"
+                    openBoxMapView.addAnnotation(annotation)
+                    // increase distance
+                    distanceForMarker += 1000
+                    
+                }
+                currentLap?.points += [loc]
+                currentTrack += [CLLocationCoordinate2DMake( loc.coordinate.latitude, loc.coordinate.longitude)]
+                if lastLoc != nil {
+                    let dist = loc.distance(from: lastLoc!)
+                    totalDistance += dist
+                    labelTrainDistance.text = totalDistance.to2dig()
+                    print(dist)
+                    print("location : \(loc.coordinate.longitude)-\(loc.coordinate.latitude)")
+                }
+                // update
+                let line = MGLPolyline(coordinates: &currentTrack, count: UInt(currentTrack.count))
+                line.title = currentLap?.name
+                openBoxMapView.addAnnotation(line)}
+            lastLoc = loc
+            */
+            
+            // set
+        }
+    }
+
     
     /*
     // MARK: - Navigation
