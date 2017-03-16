@@ -17,6 +17,11 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     // MARK: model
     
     var current_core_data_train : TrainCoreData?
+    var needRecordTrain : Bool = false
+    var totalDistance : Double = 0.0
+    var totalTime : Int = 0
+    var startTime = NSDate()
+    
     
     // MARK: - coredata
     var persistentContainer : NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
@@ -40,6 +45,8 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
             locationMamager.desiredAccuracy = kCLLocationAccuracyBest
             locationMamager.startUpdatingLocation()
         }
+        
+        distanceLabel.text = "0.00"
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +54,20 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         // Dispose of any resources that can be recreated.
     }
     
+    //
+    var timer = Timer()
+    func timerUpdate() {
+        let current = Date()
+        let time = current.timeIntervalSince(startTime as Date)
+        let timeInt = Int(time)
+        
+        timerLabel.text = timeInt.ToTime()
+    }
+    
    
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var bmpLabel: UILabel!
     @IBOutlet weak var mapView: MapView!
     
@@ -62,6 +82,9 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         //tabBarController?.tabBar.isHidden = false
         current_core_data_train?.closeHeartBeat()
         tabBarController?.tabBar.isUserInteractionEnabled = true
+        needRecordTrain = false
+        timer.invalidate()
+
     }
     
     @IBAction func onClickStartTrain(_ sender: UIButton) {
@@ -71,13 +94,22 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         
         current_core_data_train = TrainCoreData.startTrain(inPersistentContainer: persistentContainer!)
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-     
+        needRecordTrain = true
+        totalDistance = 0
+        lastLocation = nil
+        totalTime = 0
+        startTime = NSDate()
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.timerUpdate), userInfo: nil, repeats: true)
+        
         
     }
     
+    
+    
     func fetchcount()
     {
-        let request  = NSFetchRequest<NSFetchRequestResult>(entityName: "TrainCoreData")
+       /* let request  = NSFetchRequest<NSFetchRequestResult>(entityName: "TrainCoreData")
         if let results =  (try? persistentContainer?.viewContext.fetch(request)) {
             
             
@@ -89,16 +121,57 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
             }
             print("found \(fr?.heartbeat_data?.bytes) records")
         }
+ */
     }
     
     
     // MARK: location manager routing
+    
+    var lastLocation : CLLocation?
+    
+    
+    func updateDistance() {
+        distanceLabel.text = "\((totalDistance/1000).toStringFormat(fraction: 2))"
+    }
+    
+    func calculateCurrentSpeed(loc1 : CLLocation?, loc2: CLLocation ) {
+        var speed : Double
+        if  loc1 != nil {
+            let distance = loc2.distance(from: loc1!)
+            let time = loc2.timestamp.timeIntervalSince(loc1!.timestamp as Date)
+            speed = distance/time
+        } else {
+            speed = loc2.speed
+        }
+        // convert speed from meter per second to the minutes per kilometr
+        if speed > 0 {
+            speed = 1000/(speed)
+        }
+        speedLabel.text = speed.toMinPerKm()
+        
+    }
     
     // processing the location change
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for loc in locations {
             mapView.longitude = loc.coordinate.longitude
             mapView.latitude  = loc.coordinate.latitude
+            if needRecordTrain {
+                calculateCurrentSpeed(loc1:lastLocation, loc2: loc)
+                if lastLocation != nil {
+                    totalDistance += loc.distance(from: lastLocation!)
+                    updateDistance()
+                }
+                lastLocation = loc
+                                
+                if (current_core_data_train != nil)
+                {
+                    current_core_data_train?.addLocationPoint(locPoint: loc)
+                    
+                    
+                }
+                
+            }
             
             /*// add coordinate to Tracker
             if trackingUser {
@@ -143,6 +216,7 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     }
     */
 
+    
     override func setBeatPerMinute(heartrate : Int , timestamp: NSDate) {
         bmpLabel.text = "\(heartrate)"
         if (current_core_data_train != nil)
@@ -152,3 +226,38 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     }
     
  }
+
+extension Int {
+    
+    func to2dig() -> String
+    {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 2
+        return formatter.string(from: self as NSNumber)!
+    }
+    
+    func ToTime() -> String{
+        let hours = self / 3600
+        let min = (self/60) % 60
+        let sec = self % 60
+        return "\(hours.to2dig()):\(min.to2dig()):\(sec.to2dig())"
+    }
+}
+
+extension Double {
+    func toStringFormat(fraction: Int) -> String
+    {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = fraction
+        formatter.maximumFractionDigits = fraction
+        formatter.minimumIntegerDigits = 1
+        return formatter.string(from: self as NSNumber)!
+    }
+    
+    func toMinPerKm() -> String {
+        let minutes = Int(self / 60)
+        var second = Int(self)
+        second =  second % 60
+        return "\(minutes):\(second.to2dig())"
+    }
+}

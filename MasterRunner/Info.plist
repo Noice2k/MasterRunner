@@ -69,5 +69,9 @@
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Hello Word</string>
+	<key>NSLocationUsageDescription</key>
+	<string>word</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>hello</string>
 </dict>
 </plist>
