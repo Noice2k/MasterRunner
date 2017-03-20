@@ -1363,5 +1363,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MasterRunner/HistoryTrainViewController.swift"
+            timestampString = "511693192.167458"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MasterRunner.HistoryTrainViewController.tableView (__ObjC.UITableView, commit : __C.UITableViewCellEditingStyle, forRowAt : Foundation.IndexPath) -&gt; ()"
+                  moduleName = "MasterRunner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Igor/Projects/MasterRunner/MasterRunner/HistoryTrainViewController.swift"
+                  timestampString = "511692943.17679"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "571">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MasterRunner.HistoryTrainViewController.tableView (__ObjC.UITableView, commit : __C.UITableViewCellEditingStyle, forRowAt : Foundation.IndexPath) -&gt; ()"
+                  moduleName = "MasterRunner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Igor/Projects/MasterRunner/MasterRunner/HistoryTrainViewController.swift"
+                  timestampString = "511692943.179466"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "976">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
