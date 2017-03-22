@@ -110,11 +110,21 @@ class HistoryTrainViewController: UITableViewController, NSFetchedResultsControl
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrainCoreDateTrain", for: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrainCoreDateTrain", for: indexPath)  as! TrainPreviewCell
         
         if let train = fetchedResultsController?.object(at: indexPath) as? TrainCoreData
         {
-            cell.textLabel?.text = "\(train.traindata)"
+            cell.labelTrainDate?.text = "\(train.traindata!)"
+            cell.labelTrainDistance?.text = "\((train.distance/1000).toStringFormat(fraction: 2)) km"
+           
+            if train.time > 0, train.distance > 0 {
+                let speed = 1000/(train.distance/train.time)
+                cell.labelAverageSpeed?.text = "\(speed.toMinPerKm()) мин/км"
+            } else {
+             cell.labelAverageSpeed?.text = "0.00 мин/км"
+            }
+            
+            
         }
         return cell
         

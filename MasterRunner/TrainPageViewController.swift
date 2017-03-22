@@ -132,6 +132,9 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     
     func updateDistance() {
         distanceLabel.text = "\((totalDistance/1000).toStringFormat(fraction: 2))"
+        if current_core_data_train != nil {
+            current_core_data_train?.distance = totalDistance
+        }
     }
     
     func calculateCurrentSpeed(loc1 : CLLocation?, loc2: CLLocation ) {
@@ -261,3 +264,9 @@ extension Double {
         return "\(minutes):\(second.to2dig())"
     }
 }
+
+/*
+extension UITableViewController {
+    func ShowMessageBox()
+}
+ */
