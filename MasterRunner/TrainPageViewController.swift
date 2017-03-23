@@ -80,10 +80,11 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         buttonStop.isHidden = true
         buttonStart.isHidden = false
         //tabBarController?.tabBar.isHidden = false
-        current_core_data_train?.closeHeartBeat()
+        current_core_data_train?.EndTrain()
         tabBarController?.tabBar.isUserInteractionEnabled = true
         needRecordTrain = false
         timer.invalidate()
+        
 
     }
     
@@ -166,13 +167,8 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
                     updateDistance()
                 }
                 lastLocation = loc
-                                
-                if (current_core_data_train != nil)
-                {
-                    current_core_data_train?.addLocationPoint(locPoint: loc)
+                current_core_data_train?.addLocationPoint(locPoint: loc)
                     
-                    
-                }
                 
             }
             

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		54E2BFD580781F68447CD26B /* Pods_MasterRunner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3A9043BDC4BD1ACBE53E9A /* Pods_MasterRunner.framework */; };
 		780705B41E11771400A43CDB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780705B31E11771400A43CDB /* User.swift */; };
+		782EE91C1E83AC2B00506693 /* TrainInterval+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782EE91A1E83AC2B00506693 /* TrainInterval+CoreDataClass.swift */; };
+		782EE91D1E83AC2B00506693 /* TrainInterval+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782EE91B1E83AC2B00506693 /* TrainInterval+CoreDataProperties.swift */; };
 		783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */; };
 		785835771E2F453C0000EB66 /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785835761E2F453C0000EB66 /* VKPhoto.swift */; };
 		785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BF31D1E26441C00EF4B2E /* ProSportViewController.swift */; };
@@ -62,6 +64,8 @@
 		56DCB2A8CACA7201D2597825 /* Pods-MasterRunnerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasterRunnerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasterRunnerUITests/Pods-MasterRunnerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C8F943ADD388B62227A218A /* Pods_MasterRunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasterRunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		780705B31E11771400A43CDB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		782EE91A1E83AC2B00506693 /* TrainInterval+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainInterval+CoreDataClass.swift"; sourceTree = "<group>"; };
+		782EE91B1E83AC2B00506693 /* TrainInterval+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainInterval+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		783A86BE1E02E33700CD5CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		785835761E2F453C0000EB66 /* VKPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		785BF3181E251CBC00EF4B2E /* MasterRunner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MasterRunner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 		78D418681E71945E001AFDC4 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				782EE91A1E83AC2B00506693 /* TrainInterval+CoreDataClass.swift */,
+				782EE91B1E83AC2B00506693 /* TrainInterval+CoreDataProperties.swift */,
 				78D418691E71955A001AFDC4 /* TrainCoreData+CoreDataClass.swift */,
 				78D4186A1E71955A001AFDC4 /* TrainCoreData+CoreDataProperties.swift */,
 				78D418401E6D42A4001AFDC4 /* StoreRunModel.xcdatamodeld */,
@@ -573,6 +579,7 @@
 				789D462F1E011A290009FB74 /* AppDelegate.swift in Sources */,
 				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
 				78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */,
+				782EE91C1E83AC2B00506693 /* TrainInterval+CoreDataClass.swift in Sources */,
 				78CDB6C91E648A1C0062D628 /* BTConroller.swift in Sources */,
 				78CDB6C21E4392BC0062D628 /* MapView.swift in Sources */,
 				785BF3261E2678B200EF4B2E /* ProSportNewsTableViewCell.swift in Sources */,
@@ -582,6 +589,7 @@
 				785BF3201E2675A400EF4B2E /* ProSportNewsTableViewController.swift in Sources */,
 				780705B41E11771400A43CDB /* User.swift in Sources */,
 				78D418421E6D42A4001AFDC4 /* StoreRunModel.xcdatamodeld in Sources */,
+				782EE91D1E83AC2B00506693 /* TrainInterval+CoreDataProperties.swift in Sources */,
 				78CDB6BE1E4076E70062D628 /* BTSourceList.swift in Sources */,
 				785BF31E1E26441C00EF4B2E /* ProSportViewController.swift in Sources */,
 				826E4AE51E2BFCD10008B405 /* ProSportNews.swift in Sources */,

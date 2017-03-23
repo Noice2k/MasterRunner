@@ -12,6 +12,10 @@ import UIKit
 import JavaScriptCore
 import CoreLocation
 
+
+//  this entyty uses for save start/stop interval times
+//  all data, such as heartbeat/locations/ect savein main entity
+
 @objc(TrainCoreData)
 public class TrainCoreData: NSManagedObject {
 
@@ -19,12 +23,42 @@ public class TrainCoreData: NSManagedObject {
         if let entity = NSEntityDescription.entity(forEntityName: "TrainCoreData", in: container.viewContext) {
             if let newTrain = NSManagedObject(entity: entity, insertInto: container.viewContext) as? TrainCoreData {
                 newTrain.traindata = NSDate()
-                newTrain.caption = "Traint at \(newTrain.traindata)"
+                newTrain.caption = "Train at \(newTrain.traindata)"
+                newTrain.StartInterval()
                 return newTrain
             }
         }
         return nil
     }
+    
+    
+    func EndTrain(){
+        EndInterval()
+        closeHeartBeat()
+        closeLocationPoints()
+    }
+    
+    // MARK: Interval
+    
+    func StartInterval(){
+        // inititilize variables
+        let container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+        let interval_entity = NSEntityDescription.entity(forEntityName: "TrainInterval", in: container!.viewContext)
+        let interval = NSManagedObject(entity: interval_entity!, insertInto: container!.viewContext) as? TrainInterval
+        // init interval values
+        interval?.start_timestamp = NSDate()
+        interval?.distance = 0;
+        interval?.stop_timestamp = NSDate()
+        // set the current interval
+        currentInterval = interval
+        addToIntervals(interval!)
+    }
+    
+    func EndInterval(){
+        // save the last time to acces to the interval
+        currentInterval?.stop_timestamp = NSDate()
+    }
+    
     
     // MARK: HeartBeat
     
@@ -38,10 +72,14 @@ public class TrainCoreData: NSManagedObject {
         
     }
     
+    var currentInterval : TrainInterval?
+    
     var hbCurrentJsonString = ""
     var heartbeats: [heartBeatValue] = []
     
     func addHeartBeat(hbvalue : Int, timestamp: NSDate) {
+        
+        
         // add heartbeat to array
         heartbeats += [heartBeatValue(_value: hbvalue, _time : timestamp)]
         // convert to the json part string

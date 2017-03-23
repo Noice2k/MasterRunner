@@ -2,7 +2,7 @@
 //  TrainCoreData+CoreDataProperties.swift
 //  MasterRunner
 //
-//  Created by Igor Sinyakov on 09/03/2017.
+//  Created by Igor Sinyakov on 23/03/2017.
 //  Copyright © 2017 Igor Sinyakov. All rights reserved.
 //
 
@@ -16,17 +16,36 @@ extension TrainCoreData {
         return NSFetchRequest<TrainCoreData>(entityName: "TrainCoreData");
     }
 
-    @NSManaged public var traindata: NSDate?
-    @NSManaged public var caption: String?
-    @NSManaged public var max_bpm: Int16
     @NSManaged public var avarage_bpm: Int16
+    @NSManaged public var caption: String?
     @NSManaged public var distance: Double
-    @NSManaged public var max_speed: Double
-    @NSManaged public var min_speed: Double
-    @NSManaged public var heartbeat_data: NSData?
-    @NSManaged public var time: Double
-    @NSManaged public var min_bpm: Int16
-    @NSManaged public var location_data: NSData?
     @NSManaged public var fb_stored: Bool
+    @NSManaged public var max_bpm: Int16
+    @NSManaged public var max_speed: Double
+    @NSManaged public var min_bpm: Int16
+    @NSManaged public var min_speed: Double
+    @NSManaged public var time: Double
+    @NSManaged public var traindata: NSDate?
+    @NSManaged public var average_speed: Double
+    @NSManaged public var heartbeat_data: NSData?
+    @NSManaged public var location_data: NSData?
+    @NSManaged public var intervals: NSSet?
+
+}
+
+// MARK: Generated accessors for intervals
+extension TrainCoreData {
+
+    @objc(addIntervalsObject:)
+    @NSManaged public func addToIntervals(_ value: TrainInterval)
+
+    @objc(removeIntervalsObject:)
+    @NSManaged public func removeFromIntervals(_ value: TrainInterval)
+
+    @objc(addIntervals:)
+    @NSManaged public func addToIntervals(_ values: NSSet)
+
+    @objc(removeIntervals:)
+    @NSManaged public func removeFromIntervals(_ values: NSSet)
 
 }
