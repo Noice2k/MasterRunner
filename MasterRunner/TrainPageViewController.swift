@@ -71,26 +71,32 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     @IBOutlet weak var bmpLabel: UILabel!
     @IBOutlet weak var mapView: MapView!
     
+    
+    @IBOutlet weak var buttonPause: BorderButton!
     @IBOutlet weak var buttonStop: BorderButton!
     @IBOutlet weak var buttonStart: BorderButton!
     // Do any additional setup after loading the view.
     
     
+    // On Stop Training
     @IBAction func onClickStopTrain(_ sender: UIButton) {
         buttonStop.isHidden = true
         buttonStart.isHidden = false
+        buttonPause.isHidden = true
         //tabBarController?.tabBar.isHidden = false
         current_core_data_train?.EndTrain()
         tabBarController?.tabBar.isUserInteractionEnabled = true
         needRecordTrain = false
         timer.invalidate()
-        
-
     }
+    
+    
     
     @IBAction func onClickStartTrain(_ sender: UIButton) {
         buttonStop.isHidden = false
         buttonStart.isHidden = true
+        buttonPause.isHidden = false
+        
         tabBarController?.tabBar.isUserInteractionEnabled = false
         
         current_core_data_train = TrainCoreData.startTrain(inPersistentContainer: persistentContainer!)

@@ -1194,11 +1194,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511869489.980829"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "setBeatPerMinute(heartrate:timestamp:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1210,13 +1210,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511869489.980829"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "setBeatPerMinute(heartrate:timestamp:)"
-            landmarkType = "7">
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "TrainPageViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1231,7 +1231,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "addHeartBeat(hbvalue:timestamp:)"
+            landmarkName = "StartInterval()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1242,11 +1242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511285768.868638"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "fetchcount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1258,11 +1258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511285768.868638"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "onClickStopTrain(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1279,7 +1279,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "addLocationPoint(locPoint:)"
+            landmarkName = "closeHeartBeat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1306,11 +1306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511869489.980829"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1322,11 +1322,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511869489.980829"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "calculateCurrentSpeed(loc1:loc2:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1338,11 +1338,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterRunner/TrainPageViewController.swift"
-            timestampString = "511869489.980829"
+            timestampString = "512055650.655831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "calculateCurrentSpeed(loc1:loc2:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1393,6 +1393,22 @@
                   offsetFromSymbolStart = "976">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MasterRunner/TrainPageViewController.swift"
+            timestampString = "512055650.655831"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "onClickStopTrain(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
