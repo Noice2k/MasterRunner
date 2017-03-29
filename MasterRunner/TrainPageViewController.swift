@@ -11,7 +11,7 @@ import Mapbox
 import CoreData
 import CoreLocation
 
-class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationManagerDelegate {
+class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationManagerDelegate {
 
     
     // MARK: model
@@ -31,6 +31,8 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     var allIntervalsLine =  [MGLPolyline]()
     var currentTrack: [CLLocationCoordinate2D] = []
     var currentPolyLine : MGLPolyline?
+    var currentCoordinateBounds: MGLCoordinateBounds?
+    
    
     
     
@@ -47,7 +49,6 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         mapView.setZoomLevel(14, animated: false)
         mapView.delegate = self
         mapView.showsUserLocation = true
-        
         
         buttonPause.isHidden = true
         buttonStop.isHidden  = true
@@ -93,6 +94,31 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     @IBOutlet weak var buttonStart: BorderButton!
     // Do any additional setup after loading the view.
     
+    var needScreenShot = false
+    // prepare static image with our train ans save it as image
+    func prepareTrainPreview() {
+        // get the top.left bottom.rigth coordinates
+        mapView.showsUserLocation = false
+        mapView.setVisibleCoordinateBounds(currentCoordinateBounds!, edgePadding: UIEdgeInsets.init(top: CGFloat(10), left: CGFloat(10), bottom: CGFloat(10), right: CGFloat(10)), animated: true)
+        needScreenShot = true
+        
+        
+    }
+    
+    func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        if ( needScreenShot == true) {
+            needScreenShot = false
+            let screen = mapView.getSnapshotImage()
+            DispatchQueue.main.async {
+                UIImageWriteToSavedPhotosAlbum(screen,nil,nil,nil)
+                self.mapView.showsUserLocation = true
+                
+            }
+        }
+        
+    }
+
+    
     
     
     // On Stop Training
@@ -104,8 +130,17 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         current_core_data_train?.EndTrain()
         tabBarController?.tabBar.isUserInteractionEnabled = true
         needRecordTrain = false
-        timer.invalidate()
         onPauseState = false;
+        timer.invalidate()
+        
+        prepareTrainPreview()
+        // show messag box
+        if (current_core_data_train!.distance < 0.1) {
+            
+        } else {
+            // prepare image of our train, save our train and coommit to the server
+        }
+        
     }
     
     // On Pause/UnPause
@@ -154,7 +189,8 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     }
     
     func addPointToCurrentTrack(point : CLLocation) {
-        currentTrack += [CLLocationCoordinate2DMake( point.coordinate.latitude, point.coordinate.longitude)]
+        let coordinate2d = CLLocationCoordinate2DMake( point.coordinate.latitude, point.coordinate.longitude)
+        currentTrack += [coordinate2d]
         let newline = MGLPolyline(coordinates: &currentTrack, count: UInt(currentTrack.count))
         newline.title = "Interval#\(allIntervalsLine.count)"
         allIntervalsLine.remove(at: allIntervalsLine.count-1)
@@ -165,6 +201,23 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         }
         mapView.addAnnotation(newline)
         currentPolyLine = newline
+        
+        //
+        //  Calculate new coordinate bounds
+        //
+        if (currentCoordinateBounds) == nil {
+            currentCoordinateBounds = MGLCoordinateBounds(sw: coordinate2d, ne: coordinate2d)
+        } else
+        {
+            // check the North coordinate
+            if (currentCoordinateBounds!.ne.latitude < coordinate2d.latitude) { currentCoordinateBounds!.ne.latitude = coordinate2d.latitude }
+            // check the South coordinate
+            if (currentCoordinateBounds!.sw.latitude > coordinate2d.latitude) { currentCoordinateBounds!.sw.latitude = coordinate2d.latitude }
+            // check the West coordinate
+            if (currentCoordinateBounds!.sw.longitude > coordinate2d.longitude) { currentCoordinateBounds!.sw.longitude = coordinate2d.longitude }
+            // check the East coordinate
+            if (currentCoordinateBounds!.ne.longitude < coordinate2d.longitude) { currentCoordinateBounds!.ne.longitude = coordinate2d.longitude }
+        }
     }
     
     func fetchcount()
@@ -320,6 +373,16 @@ extension Double {
         var second = Int(self)
         second =  second % 60
         return "\(minutes):\(second.to2dig())"
+    }
+}
+
+extension UIView {
+    public func getSnapshotImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, 0)
+        self.drawHierarchy(in: self.bounds, afterScreenUpdates: false)
+        let snapshotImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return snapshotImage
     }
 }
 

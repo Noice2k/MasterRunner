@@ -618,7 +618,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abR-KH-Mer" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="22" y="13" width="105" height="44"/>
+                                                <rect key="frame" x="22" y="13" width="106" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="JsV-Vb-PFJ"/>
                                                     <constraint firstAttribute="width" priority="999" constant="180" identifier="width" id="O0Z-n5-I0U"/>
@@ -642,7 +642,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtB-1T-1Aa" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="139" y="13" width="95" height="44"/>
+                                                <rect key="frame" x="140" y="13" width="95" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="999" constant="150" identifier="width" id="DVo-5p-0e1"/>
                                                     <constraint firstAttribute="height" constant="44" id="uUa-Ce-FXU"/>
@@ -665,7 +665,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMV-uq-n4n" userLabel="Button Pause" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="246" y="13" width="107" height="44"/>
+                                                <rect key="frame" x="247" y="13" width="106" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="4m8-Mw-vau"/>
                                                     <constraint firstAttribute="width" priority="999" constant="150" identifier="width" id="HNK-FG-gLX"/>
