@@ -25,8 +25,6 @@ class User {
             if (_currentUser == nil) {
                 let defaults = UserDefaults.standard
                 let userData = defaults.object(forKey: "currentUser") as? Data
-                let arr = [UInt8](userData!)
-                print(arr)
                 
                 if let userData = userData {
                     if let dictionary = try? JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary {

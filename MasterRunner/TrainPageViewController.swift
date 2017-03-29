@@ -21,12 +21,24 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     var totalDistance : Double = 0.0
     var totalTime : Int = 0
     var startTime = NSDate()
+    var onPauseState : Bool  = false {
+        didSet {
+            let name =  onPauseState ? "ContinueTrain" : "PauseTrain"
+            buttonPause.setImage(UIImage(named: name) , for: UIControlState.normal)
+        }
+    }
+    
+    var allIntervalsLine =  [MGLPolyline]()
+    var currentTrack: [CLLocationCoordinate2D] = []
+    var currentPolyLine : MGLPolyline?
+   
     
     
     // MARK: - coredata
     var persistentContainer : NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     var locationMamager = CLLocationManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +47,10 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         mapView.setZoomLevel(14, animated: false)
         mapView.delegate = self
         mapView.showsUserLocation = true
+        
+        
+        buttonPause.isHidden = true
+        buttonStop.isHidden  = true
         
         // setup location manager
         self.locationMamager.requestAlwaysAuthorization()
@@ -78,6 +94,7 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
     // Do any additional setup after loading the view.
     
     
+    
     // On Stop Training
     @IBAction func onClickStopTrain(_ sender: UIButton) {
         buttonStop.isHidden = true
@@ -88,9 +105,22 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         tabBarController?.tabBar.isUserInteractionEnabled = true
         needRecordTrain = false
         timer.invalidate()
+        onPauseState = false;
     }
     
-    
+    // On Pause/UnPause
+    @IBAction func onClickPauseTrain(_ sender: UIButton) {
+        onPauseState = !onPauseState
+        
+        if onPauseState == false {
+            current_core_data_train?.StartInterval()
+            addNewTrack()
+        } else {
+           current_core_data_train?.EndInterval()
+        }
+        
+        
+    }
     
     @IBAction func onClickStartTrain(_ sender: UIButton) {
         buttonStop.isHidden = false
@@ -106,13 +136,36 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
         lastLocation = nil
         totalTime = 0
         startTime = NSDate()
-        
+        onPauseState = false
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.timerUpdate), userInfo: nil, repeats: true)
         
         
+        // create new polyline for map
+        addNewTrack()
+        
     }
     
+    func addNewTrack()
+    {
+        currentTrack.removeAll()
+        currentPolyLine = MGLPolyline(coordinates: &currentTrack, count: UInt(currentTrack.count))
+        currentPolyLine!.title = "Interval#\(allIntervalsLine.count)"
+        allIntervalsLine.append(currentPolyLine!)
+    }
     
+    func addPointToCurrentTrack(point : CLLocation) {
+        currentTrack += [CLLocationCoordinate2DMake( point.coordinate.latitude, point.coordinate.longitude)]
+        let newline = MGLPolyline(coordinates: &currentTrack, count: UInt(currentTrack.count))
+        newline.title = "Interval#\(allIntervalsLine.count)"
+        allIntervalsLine.remove(at: allIntervalsLine.count-1)
+        allIntervalsLine.append(newline)
+        
+        if currentPolyLine != nil {
+            mapView.removeAnnotation(currentPolyLine!)
+        }
+        mapView.addAnnotation(newline)
+        currentPolyLine = newline
+    }
     
     func fetchcount()
     {
@@ -174,7 +227,10 @@ class TrainPageViewController: BTViewController,MGLMapViewDelegate, CLLocationMa
                 }
                 lastLocation = loc
                 current_core_data_train?.addLocationPoint(locPoint: loc)
-                    
+                // add new point to track
+                if (onPauseState == false) {
+                    addPointToCurrentTrack(point: loc)
+                }
                 
             }
             

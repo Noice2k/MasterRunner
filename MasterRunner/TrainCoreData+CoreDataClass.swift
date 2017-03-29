@@ -41,6 +41,11 @@ public class TrainCoreData: NSManagedObject {
     // MARK: Interval
     
     func StartInterval(){
+        
+        if currentInterval != nil {
+            EndInterval()
+        }
+        
         // inititilize variables
         let container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         let interval_entity = NSEntityDescription.entity(forEntityName: "TrainInterval", in: container!.viewContext)
@@ -57,6 +62,8 @@ public class TrainCoreData: NSManagedObject {
     func EndInterval(){
         // save the last time to acces to the interval
         currentInterval?.stop_timestamp = NSDate()
+        print("\(currentInterval?.stop_timestamp)")
+        currentInterval = nil
     }
     
     

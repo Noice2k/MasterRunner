@@ -22,6 +22,25 @@ class BorderButton: UIButton {
         }
     }
     
+    var _width : Int = 0
+    
+   /* override var isHidden: Bool // default is NO. doesn't check superviews
+        {
+        willSet (value) {
+            // disable constraint by name 
+           if (constraints.count > 0) {
+                for index in 0...constraints.count-1 {
+                    print("\(constraints[index].identifier)")
+                    if constraints[index].identifier == "width" {
+                        constraints[index].constant = value ? 0 : 150
+                    }
+                }
+            }
+        }
+    }
+    
+*/
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = layer.frame.height/2

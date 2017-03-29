@@ -607,11 +607,22 @@
                                             <constraint firstAttribute="height" constant="80" id="OPz-aI-eop"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yUe-sZ-FI9" userLabel="Command Buttons StackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yUe-sZ-FI9" userLabel="Command Buttons StackView">
                                         <rect key="frame" x="0.0" y="528" width="375" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abR-KH-Mer" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="19" width="117" height="32"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erD-DL-Hz2" userLabel="AligmentView">
+                                                <rect key="frame" x="0.0" y="0.0" width="10" height="70"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="10" id="zmu-hj-s80"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abR-KH-Mer" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
+                                                <rect key="frame" x="22" y="13" width="105" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="JsV-Vb-PFJ"/>
+                                                    <constraint firstAttribute="width" priority="999" constant="180" identifier="width" id="O0Z-n5-I0U"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <size key="titleShadowOffset" width="6" height="5"/>
                                                 <state key="normal" title="  Старт" image="StartTrain">
@@ -630,8 +641,12 @@
                                                     <action selector="onClickStartTrain:" destination="S0x-ck-jIn" eventType="touchUpInside" id="QZd-xn-c01"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtB-1T-1Aa" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="129" y="19" width="117" height="32"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtB-1T-1Aa" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
+                                                <rect key="frame" x="139" y="13" width="95" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="999" constant="150" identifier="width" id="DVo-5p-0e1"/>
+                                                    <constraint firstAttribute="height" constant="44" id="uUa-Ce-FXU"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal" title="  Стоп" image="StopTrain">
                                                     <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -649,10 +664,14 @@
                                                     <action selector="onClickStopTrain:" destination="S0x-ck-jIn" eventType="touchUpInside" id="yPC-b8-cHu"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMV-uq-n4n" userLabel="Button Pause" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="258" y="19" width="117" height="32"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMV-uq-n4n" userLabel="Button Pause" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
+                                                <rect key="frame" x="246" y="13" width="107" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="4m8-Mw-vau"/>
+                                                    <constraint firstAttribute="width" priority="999" constant="150" identifier="width" id="HNK-FG-gLX"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Пауза" image="StopTrain">
+                                                <state key="normal" title="  Пауза" image="PauseTrain">
                                                     <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -664,7 +683,17 @@
                                                         <color key="value" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onClickPauseTrain:" destination="S0x-ck-jIn" eventType="touchUpInside" id="YEL-nP-YJx"/>
+                                                </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31l-zU-icW" userLabel="AlignemtView">
+                                                <rect key="frame" x="365" y="0.0" width="10" height="70"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="10" id="vKS-hL-IO3"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="JBy-NI-dv9"/>
@@ -981,6 +1010,7 @@
     <resources>
         <image name="BlueBtn" width="9" height="33"/>
         <image name="LogoImage" width="236" height="394"/>
+        <image name="PauseTrain" width="32" height="32"/>
         <image name="StartTrain" width="32" height="32"/>
         <image name="StopTrain" width="32" height="32"/>
         <image name="VKLoging" width="108" height="22"/>
