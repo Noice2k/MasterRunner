@@ -199,4 +199,41 @@ public class TrainCoreData: NSManagedObject {
         }
         return coordinates
     }
+    
+    
+    /*
+     
+     
+     let string = "{  \"type\": \"FeatureCollection\",  \"features\": [    {      \"type\": \"Feature\",      \"properties\": {        \"stroke\": \"#00f\",        \"stroke-width\": 3,        \"stroke-opacity\": 1      },      \"geometry\": {        \"type\": \"LineString\",        \"coordinates\": [          [            -122.40106959,            37.57843435          ],          [            -122.44106959,            37.53843435          ]        ]      }    }  ]}"
+     
+     */
+    
+    func getGeoJsonString() ->String {
+        var geoString = "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{\"stroke\":\"#00f\",\"stroke-width\": 3,\"stroke-opacity\":1},\"geometry\": { \"type\": \"LineString\",        \"coordinates\": ["
+      
+        let json = try? JSONSerialization.jsonObject(with: location_data as! Data, options: [])
+        if json != nil {
+            if let items = json as? NSArray {
+                for item in items {
+                    if let loc = item as? [String:String] {
+                        let long = loc["loc.long"]!
+                        let lant = loc["loc.lat"]!
+                        if long != "0.0" {
+                            geoString += "[\(long),\(lant)],"
+                        }
+                        else {
+                            geoString.characters = geoString.characters.dropLast()
+                        }
+                        
+                    }
+                }
+            }
+        }
+        geoString += "]}}]}"
+
+        
+        return geoString
+        
+    }
+    
 }

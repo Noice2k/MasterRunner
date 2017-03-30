@@ -743,6 +743,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD3CBD551F2373B4B9CDB373 /* Pods-MasterRunner.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -763,6 +764,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B650495142CD5A5A48257B92 /* Pods-MasterRunner.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shumaher2000@mail.ru (76Y6KZ32QF)";

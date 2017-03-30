@@ -125,13 +125,15 @@ class HistoryTrainViewController: UITableViewController, NSFetchedResultsControl
             }
             
             let screen = MapScreenShot()
-            screen.GetMapScreenShot(coreTrain: train)
+            
+            cell.imageTrainScreenShot.image = screen.GetMapScreenShot(coreTrain: train)
+            /*
             if (train.screenshot != nil) {
                 cell.imageTrainScreenShot.image = UIImage(data: train.screenshot! as Data!)
             } else {
                 cell.imageTrainScreenShot.image = nil
             }
-            
+            */
             
         }
         return cell

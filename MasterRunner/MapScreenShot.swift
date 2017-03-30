@@ -10,31 +10,41 @@ import Foundation
 import UIKit
 import CoreLocation
 import Mapbox
+import MapboxStatic
 
 class MapScreenShot
 {
     func GetMapScreenShot(coreTrain : TrainCoreData) -> UIImage? {
         // 1. calculate bounce
-        let coordinates = coreTrain.getAllCoordinates2D()
+        let  coordinates = coreTrain.getAllCoordinates2D()
+        let geoJsonString = coreTrain.getGeoJsonString()
         let bounds = getCoordinateBounds(coordinates : coordinates)
         // 2. get image map
-        let dx = abs(bounds!.ne.longitude - bounds!.sw.longitude)
-        let dy = abs(bounds!.ne.latitude  - bounds!.sw.latitude)
-        let x = bounds!.ne.longitude + dx/2
-        let y = bounds!.ne.latitude - dx/2
+        let dx = (bounds!.ne.longitude - bounds!.sw.longitude)
+        let dy = (bounds!.ne.latitude  - bounds!.sw.latitude)
+        let x = bounds!.ne.longitude - dx/2
+        let y = bounds!.ne.latitude - dy/2
         
         // calculate size in pixes to show with max zoom
         let px = (dx / 0.0005) + 20
         let py = (dy / 0.0005) + 20
         
+        let camera = SnapshotCamera(lookingAtCenter: CLLocationCoordinate2DMake(y, x), zoomLevel : 10.9)
+        let json = GeoJSON(objectString: geoJsonString)
+        
+        let options = SnapshotOptions(styleURL: URL(string: "mapbox://styles/mapbox/streets-v9")!, camera: camera, size: CGSize(width: 200, height: 200))
+        options.overlays.append(json)
+        let snapshot = Snapshot(options: options, accessToken: "pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA")
+        
+        
+        return snapshot.image
         
         
         
         
         
         // 3. draw
-        
-        return nil
+
     }
     
     func getCoordinateBounds(coordinates: [CLLocationCoordinate2D]) -> MGLCoordinateBounds?{
