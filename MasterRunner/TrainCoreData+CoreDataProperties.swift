@@ -2,7 +2,7 @@
 //  TrainCoreData+CoreDataProperties.swift
 //  MasterRunner
 //
-//  Created by Igor Sinyakov on 23/03/2017.
+//  Created by Igor Sinyakov on 30/03/2017.
 //  Copyright © 2017 Igor Sinyakov. All rights reserved.
 //
 
@@ -17,18 +17,21 @@ extension TrainCoreData {
     }
 
     @NSManaged public var avarage_bpm: Int16
+    @NSManaged public var average_speed: Double
     @NSManaged public var caption: String?
     @NSManaged public var distance: Double
     @NSManaged public var fb_stored: Bool
+    @NSManaged public var heartbeat_data: NSData?
+    @NSManaged public var location_data: NSData?
     @NSManaged public var max_bpm: Int16
     @NSManaged public var max_speed: Double
     @NSManaged public var min_bpm: Int16
     @NSManaged public var min_speed: Double
     @NSManaged public var time: Double
     @NSManaged public var traindata: NSDate?
-    @NSManaged public var average_speed: Double
-    @NSManaged public var heartbeat_data: NSData?
-    @NSManaged public var location_data: NSData?
+    @NSManaged public var screenshot: NSData?
+    @NSManaged public var screenshot_width: Int16
+    @NSManaged public var screenshot_heigth: Int16
     @NSManaged public var intervals: NSSet?
 
 }

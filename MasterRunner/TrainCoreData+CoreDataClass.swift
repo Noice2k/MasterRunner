@@ -139,7 +139,7 @@ public class TrainCoreData: NSManagedObject {
         // add to array
         locationPoints += [locPoint]
         // add to json store string
-        var tmpStr = "{\"loc.lat\":\"\(locPoint.coordinate.latitude)\",\"loc.long\":\"\(locPoint.coordinate.longitude)\",\"time\":\"\(locPoint.timestamp)\""
+        var tmpStr = "{\"loc.lat\":\"\(locPoint.coordinate.latitude)\",\"loc.long\":\"\(locPoint.coordinate.longitude)\",\"time\":\"\(locPoint.timestamp)\","
         tmpStr += "\"loc.alt\":\"\(locPoint.altitude)\",\"loc.hacc\":\"\(locPoint.horizontalAccuracy)\",\"loc.vacc\":\"\(locPoint.verticalAccuracy)\","
         tmpStr += "\"loc.speed\":\"\(locPoint.speed)\",\"loc.course\":\"\(locPoint.course)\"},"
         locCurrentJsonString += tmpStr
@@ -158,7 +158,7 @@ public class TrainCoreData: NSManagedObject {
         }
         else {
             // add begin array marker if we try store first data to this field
-            hbCurrentJsonString.insert("[", at: locCurrentJsonString.startIndex)
+            locCurrentJsonString.insert("[", at: locCurrentJsonString.startIndex)
         }
         // append old data, and save it
         tempdata.append(Data(locCurrentJsonString.utf8))
@@ -172,12 +172,31 @@ public class TrainCoreData: NSManagedObject {
     func closeLocationPoints()
     {
         // add one empty value and close marker
-        hbCurrentJsonString += "{\"loc.lat\":\"0.0\",\"loc.long\":\"0.0\",\"time\":\"\(Date())\"}]"
+        locCurrentJsonString += "{\"loc.lat\":\"0.0\",\"loc.long\":\"0.0\",\"time\":\"\(Date())\"}]"
         updateLocationPoints()
         
         // just for debug
         let d = location_data! as Data
         let  str = NSString(data: d, encoding: String.Encoding.utf8.rawValue)
         print(str!)
+    }
+    
+    func getAllCoordinates2D () -> [CLLocationCoordinate2D]
+    {
+        var coordinates = [CLLocationCoordinate2D]()
+        // 
+        let json = try? JSONSerialization.jsonObject(with: location_data as! Data, options: [])
+        if json != nil {
+            if let items = json as? NSArray {
+                for item in items {
+                    if let loc = item as? [String:String] {
+                        let long = Double(loc["loc.long"]!)
+                        let lant = Double(loc["loc.lat"]!)
+                        coordinates += [CLLocationCoordinate2DMake(lant!, long!)]
+                    }
+                }
+            }
+        }
+        return coordinates
     }
 }

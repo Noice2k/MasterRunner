@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MapboxStatic.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MasterRunner.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,6 +47,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0C98C791DA4CD88532A228F3B22B179D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0E40B8102429309496B7538F255D43E3</key>
 		<dict>
 			<key>primary</key>
@@ -57,12 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61AF5DA8A6ABA163DCEA6405E045F705</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6F1A3B9D191C82689F7A4D4D1C7B05EF</key>
+		<key>740EBAE46496C7379406088D209E213A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FBBB6FEEF2DB0F5D9840E6F43ACBD7B8</key>
+		<key>AD5A57F0FB130101A56B1902EE7469A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C2BC62EF8065D87863A446E27D4EAED6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

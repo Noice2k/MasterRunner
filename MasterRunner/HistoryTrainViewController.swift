@@ -124,6 +124,14 @@ class HistoryTrainViewController: UITableViewController, NSFetchedResultsControl
              cell.labelAverageSpeed?.text = "0.00 мин/км"
             }
             
+            let screen = MapScreenShot()
+            screen.GetMapScreenShot(coreTrain: train)
+            if (train.screenshot != nil) {
+                cell.imageTrainScreenShot.image = UIImage(data: train.screenshot! as Data!)
+            } else {
+                cell.imageTrainScreenShot.image = nil
+            }
+            
             
         }
         return cell
@@ -222,5 +230,17 @@ class HistoryTrainViewController: UITableViewController, NSFetchedResultsControl
         tableView.endUpdates()
     }
     
-   
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let train = fetchedResultsController?.object(at: indexPath) as? TrainCoreData
+        {
+            if (train.screenshot == nil) {
+                return 100.0
+            }
+            else {
+                return 300.0
+            }
+            
+        }
+        return 100.0
+    }
 }

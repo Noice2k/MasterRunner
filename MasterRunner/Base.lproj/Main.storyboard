@@ -385,42 +385,76 @@
         <scene sceneID="TG1-u8-iPD">
             <objects>
                 <tableViewController id="pXR-dg-xKb" customClass="HistoryTrainViewController" customModule="MasterRunner" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="mxk-R2-cUk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="264" sectionHeaderHeight="28" sectionFooterHeight="28" id="mxk-R2-cUk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainCoreDateTrain" id="WGl-CM-ZGq" customClass="TrainPreviewCell" customModule="MasterRunner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainCoreDateTrain" rowHeight="264" id="WGl-CM-ZGq" customClass="TrainPreviewCell" customModule="MasterRunner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="264"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WGl-CM-ZGq" id="6Lj-2V-ioD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="263"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Дата тренировки :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wie-dL-tsh">
-                                            <rect key="frame" x="8" y="0.0" width="359" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0,00 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLN-XU-Lo9">
-                                            <rect key="frame" x="8" y="22" width="137" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00 мин/км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg6-s2-Edl">
-                                            <rect key="frame" x="166" y="22" width="115" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="E6K-UL-LWs">
+                                            <rect key="frame" x="0.0" y="-1" width="359" height="248"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbL-4h-2OQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="126.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00 мин/км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg6-s2-Edl">
+                                                            <rect key="frame" x="8" y="23.5" width="115" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="115" id="6R4-Ef-2eb"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата тренировки :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wie-dL-tsh">
+                                                            <rect key="frame" x="8" y="-0.5" width="343" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0,00 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLN-XU-Lo9">
+                                                            <rect key="frame" x="117" y="24" width="137" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="137" id="yVg-hD-LMb"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="zg6-s2-Edl" firstAttribute="centerX" secondItem="wie-dL-tsh" secondAttribute="centerX" constant="-114" id="1jv-U8-uKg"/>
+                                                        <constraint firstItem="wie-dL-tsh" firstAttribute="centerY" secondItem="qbL-4h-2OQ" secondAttribute="centerY" constant="-53.5" id="BmE-dl-rUP"/>
+                                                        <constraint firstItem="wie-dL-tsh" firstAttribute="leading" secondItem="qbL-4h-2OQ" secondAttribute="leadingMargin" id="DZJ-gM-lqw"/>
+                                                        <constraint firstItem="wie-dL-tsh" firstAttribute="trailing" secondItem="qbL-4h-2OQ" secondAttribute="trailingMargin" id="EAu-GG-yOt"/>
+                                                        <constraint firstItem="BLN-XU-Lo9" firstAttribute="top" secondItem="qbL-4h-2OQ" secondAttribute="top" constant="24" id="FyD-nk-X8M"/>
+                                                        <constraint firstItem="zg6-s2-Edl" firstAttribute="centerX" secondItem="BLN-XU-Lo9" secondAttribute="centerX" constant="-120" id="LGb-8M-Z2h"/>
+                                                        <constraint firstItem="BLN-XU-Lo9" firstAttribute="baseline" secondItem="zg6-s2-Edl" secondAttribute="baseline" id="ZP7-9T-Cv8"/>
+                                                        <constraint firstItem="wie-dL-tsh" firstAttribute="baseline" secondItem="BLN-XU-Lo9" secondAttribute="baseline" constant="-24.5" id="eNw-8y-Xzp"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sgp-3F-Ftn">
+                                                    <rect key="frame" x="0.0" y="126.5" width="359" height="121.5"/>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="E6K-UL-LWs" firstAttribute="leading" secondItem="6Lj-2V-ioD" secondAttribute="leadingMargin" constant="-8" id="2DM-iB-MSl"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="E6K-UL-LWs" secondAttribute="trailing" constant="8" id="MUe-yd-o6w"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="E6K-UL-LWs" secondAttribute="bottom" constant="8" id="lHx-uC-mlH"/>
+                                        <constraint firstItem="E6K-UL-LWs" firstAttribute="top" secondItem="6Lj-2V-ioD" secondAttribute="topMargin" constant="-9" id="qZE-OR-bzi"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imageTrainScreenShot" destination="sgp-3F-Ftn" id="BVf-nu-jq8"/>
                                     <outlet property="labelAverageSpeed" destination="zg6-s2-Edl" id="07d-5i-gTc"/>
                                     <outlet property="labelTrainDate" destination="wie-dL-tsh" id="rBR-PN-SUd"/>
                                     <outlet property="labelTrainDistance" destination="BLN-XU-Lo9" id="Ct0-eP-mFZ"/>
@@ -618,7 +652,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abR-KH-Mer" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="22" y="13" width="106" height="44"/>
+                                                <rect key="frame" x="22" y="13" width="105" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="JsV-Vb-PFJ"/>
                                                     <constraint firstAttribute="width" priority="999" constant="180" identifier="width" id="O0Z-n5-I0U"/>
@@ -642,7 +676,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtB-1T-1Aa" customClass="BorderButton" customModule="MasterRunner" customModuleProvider="target">
-                                                <rect key="frame" x="140" y="13" width="95" height="44"/>
+                                                <rect key="frame" x="139" y="13" width="96" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="999" constant="150" identifier="width" id="DVo-5p-0e1"/>
                                                     <constraint firstAttribute="height" constant="44" id="uUa-Ce-FXU"/>

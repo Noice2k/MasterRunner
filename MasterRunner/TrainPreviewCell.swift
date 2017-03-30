@@ -18,7 +18,7 @@ class TrainPreviewCell: UITableViewCell {
     @IBOutlet weak var labelAverageSpeed: UILabel!
     @IBOutlet weak var labelTrainDistance: UILabel!
     @IBOutlet weak var labelTrainDate: UILabel!
-    
+    @IBOutlet weak var imageTrainScreenShot: UIImageView!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

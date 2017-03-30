@@ -2,12 +2,13 @@
 //  TrainInterval+CoreDataProperties.swift
 //  MasterRunner
 //
-//  Created by Igor Sinyakov on 23/03/2017.
+//  Created by Igor Sinyakov on 30/03/2017.
 //  Copyright © 2017 Igor Sinyakov. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension TrainInterval {
 

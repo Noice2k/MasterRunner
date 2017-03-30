@@ -10,6 +10,7 @@ pod ‘VK-ios-sdk’
 pod ‘Firebase/Core’
 pod ‘Firebase/Auth’
 pod ‘Firebase/Database’
+pod ‘MapboxStatic.swift‘, :git => ’https://github.com/mapbox/MapboxStatic.swift.git’, :branch=> ’master’
 pod 'Mapbox-iOS-SDK', '~> 3.3.4'
   target 'MasterRunnerTests' do
     inherit! :search_paths

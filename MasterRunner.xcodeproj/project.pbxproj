@@ -25,6 +25,7 @@
 		789D46361E011A290009FB74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 789D46351E011A290009FB74 /* Assets.xcassets */; };
 		789D464F1E011A290009FB74 /* MasterRunnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789D464E1E011A290009FB74 /* MasterRunnerUITests.swift */; };
 		78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */; };
+		78B92B001E8D338400B32358 /* MapScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B92AFF1E8D338400B32358 /* MapScreenShot.swift */; };
 		78CDB6BE1E4076E70062D628 /* BTSourceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6BD1E4076E70062D628 /* BTSourceList.swift */; };
 		78CDB6C01E407D130062D628 /* BTDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6BF1E407D130062D628 /* BTDeviceCell.swift */; };
 		78CDB6C21E4392BC0062D628 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CDB6C11E4392BC0062D628 /* MapView.swift */; };
@@ -87,6 +88,7 @@
 		789D464E1E011A290009FB74 /* MasterRunnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterRunnerUITests.swift; sourceTree = "<group>"; };
 		789D46501E011A290009FB74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78B50B8C1E1160FD005CC446 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		78B92AFF1E8D338400B32358 /* MapScreenShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapScreenShot.swift; sourceTree = "<group>"; };
 		78CDB6BD1E4076E70062D628 /* BTSourceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTSourceList.swift; sourceTree = "<group>"; };
 		78CDB6BF1E407D130062D628 /* BTDeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTDeviceCell.swift; sourceTree = "<group>"; };
 		78CDB6C11E4392BC0062D628 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		78CDB6CA1E6550630062D628 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				78B92AFF1E8D338400B32358 /* MapScreenShot.swift */,
 				78CDB6CB1E65508A0062D628 /* BorderButton.swift */,
 			);
 			name = GUI;
@@ -385,11 +388,13 @@
 					};
 					789D463E1E011A290009FB74 = {
 						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 789D462A1E011A290009FB74;
 					};
 					789D46491E011A290009FB74 = {
 						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 789D462A1E011A290009FB74;
 					};
@@ -580,6 +585,7 @@
 				783A86BF1E02E33700CD5CD8 /* LoginViewController.swift in Sources */,
 				78B50B8D1E1160FD005CC446 /* SettingsViewController.swift in Sources */,
 				782EE91C1E83AC2B00506693 /* TrainInterval+CoreDataClass.swift in Sources */,
+				78B92B001E8D338400B32358 /* MapScreenShot.swift in Sources */,
 				78CDB6C91E648A1C0062D628 /* BTConroller.swift in Sources */,
 				78CDB6C21E4392BC0062D628 /* MapView.swift in Sources */,
 				785BF3261E2678B200EF4B2E /* ProSportNewsTableViewCell.swift in Sources */,
