@@ -185,14 +185,16 @@ public class TrainCoreData: NSManagedObject {
     {
         var coordinates = [CLLocationCoordinate2D]()
         // 
-        let json = try? JSONSerialization.jsonObject(with: location_data as! Data, options: [])
-        if json != nil {
-            if let items = json as? NSArray {
-                for item in items {
-                    if let loc = item as? [String:String] {
-                        let long = Double(loc["loc.long"]!)
-                        let lant = Double(loc["loc.lat"]!)
-                        coordinates += [CLLocationCoordinate2DMake(lant!, long!)]
+        if location_data != nil {
+            let json = try? JSONSerialization.jsonObject(with: location_data as! Data, options: [])
+            if json != nil {
+                if let items = json as? NSArray {
+                    for item in items {
+                        if let loc = item as? [String:String] {
+                            let long = Double(loc["loc.long"]!)
+                            let lant = Double(loc["loc.lat"]!)
+                            coordinates += [CLLocationCoordinate2DMake(lant!, long!)]
+                        }
                     }
                 }
             }

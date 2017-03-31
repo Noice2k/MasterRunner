@@ -235,6 +235,7 @@ class HistoryTrainViewController: UITableViewController, NSFetchedResultsControl
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let train = fetchedResultsController?.object(at: indexPath) as? TrainCoreData
         {
+            return 300.0
             if (train.screenshot == nil) {
                 return 100.0
             }
