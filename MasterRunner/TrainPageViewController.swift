@@ -46,7 +46,7 @@ class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationM
         super.viewDidLoad()
 
         mapView.setCenter(CLLocationCoordinate2D(latitude: 57.8220, longitude: 28.3317), animated: false)
-        mapView.setZoomLevel(14, animated: false)
+        mapView.setZoomLevel(13, animated: false)
         mapView.delegate = self
         mapView.showsUserLocation = true
         

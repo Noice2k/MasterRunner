@@ -238,4 +238,17 @@ public class TrainCoreData: NSManagedObject {
         
     }
     
+    func exportLocationDataToFile() {
+        if  let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+            let path = dir.appendingPathComponent("\(traindata).json")
+            do {
+                try location_data?.write(to: path, options: NSData.WritingOptions.atomicWrite)
+            }
+            catch {}
+        }
+            
+        
+        
+    }
+    
 }

@@ -75,5 +75,7 @@
 	<string>word</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>hello</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>
