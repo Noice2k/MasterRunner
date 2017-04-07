@@ -40,25 +40,22 @@ class MapScreenShot
         
         
         // calculate size in pixes to show with max zoom
-        let zoom = 14.0
+        let zoom = 13.5
         
         
-        let l1 = CLLocation(latitude: bounds!.sw.longitude, longitude: bounds!.ne.latitude)
-        let l2 = CLLocation(latitude: bounds!.ne.longitude, longitude: bounds!.ne.latitude)
+//        let l1 = CLLocation(latitude: bounds!.sw.longitude, longitude: bounds!.ne.latitude)
+//        let l2 = CLLocation(latitude: bounds!.ne.longitude, longitude: bounds!.ne.latitude)
+//        
         
-        let dis = l1.distance(from: l2)
+//        let camera = SnapshotCamera(lookingAtCenter: CLLocationCoordinate2DMake(y, x), zoomLevel : CGFloat(zoom))
+//        let json = GeoJSON(objectString: geoJsonString)
+//        let options = SnapshotOptions(styleURL: URL(string: "mapbox://styles/mapbox/streets-v9")!, camera: camera, size: CGSize(width: 200, height: 200))
+//        //options.overlays.append(json)
+//        let snapshot = Snapshot(options: options, accessToken: "pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA")
+//        return snapshot.image
         
-      let camera = SnapshotCamera(lookingAtCenter: CLLocationCoordinate2DMake(y, x), zoomLevel : CGFloat(zoom))
-        let json = GeoJSON(objectString: geoJsonString)
-        let options = SnapshotOptions(styleURL: URL(string: "mapbox://styles/mapbox/streets-v9")!, camera: camera, size: CGSize(width: 200, height: 200))
-//options.overlays.append(json)
-        let snapshot = Snapshot(options: options, accessToken: "pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA")
-     //   return snapshot.image
-
-        
-      //  let stringUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/\(center.longitude),\(center.latitude),\(zoom)/200x200@2x?access_token=pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA"
-
-        let stringUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/\(center.longitude),\(center.latitude),\(zoom)/400x400?access_token=pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA"
+       // let stringUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/\(center.longitude),\(center.latitude),\(zoom)/200x200@2x?access_token=pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA"
+          let stringUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/\(center.longitude),\(center.latitude),\(zoom)/400x400?access_token=pk.eyJ1Ijoibm9pY2UyayIsImEiOiJjaXRwaG9wZTIwMDBmMnlwZmQ2MWp3ZG1rIn0.jG6g5nKhHJUz35S9AWrjHA"
 
         
         let imageUrl = URL(string: stringUrl)
@@ -79,17 +76,13 @@ class MapScreenShot
         UIGraphicsBeginImageContext(image.size)
         image.draw(at: CGPoint.zero)
         let context = UIGraphicsGetCurrentContext()
-        context?.setLineWidth(1.0)
+        context?.setLineWidth(2.0)
         context?.setStrokeColor(UIColor.blue.cgColor)
-        
-        // retina : x2
-        //let zoom = (156412/pow(2,zoom))/2
-       // let zoom = (156412/pow(2,zoom+2.2928))
+        // this is unrealy magic voodoo
         let xzoom = Double.pi*2*63727982*cos(center.latitude*Double.pi/180)/pow(2, zoom+11+1.2928)
-       // let yzoom = (156412/pow(2,zoom+2.2928))
-        let yzoom = (156412/pow(2,zoom+1.2928))
+        // let xzoom = Double.pi*2*63727982*cos(center.latitude*Double.pi/180)/pow(2, zoom+11+2.2928)
         
-        //let zoom = (156412/pow(2,zoom+2.414))
+        
         var x,y : Double
         if coordinates.count > 0 {
             x = CLLocation.distance_x(from: center, to: coordinates[0])/xzoom
