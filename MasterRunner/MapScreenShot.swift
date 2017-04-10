@@ -26,11 +26,10 @@ class MapScreenShot
             return nil
         }
         
-        coreTrain.exportLocationDataToFile()
+        //coreTrain.exportLocationDataToFile()
         //let geoJsonString = coreTrain.getGeoJsonString()
         let bounds = getCoordinateBounds(coordinates : coordinates)
-        
-        let geoJsonString = boundsToGeoString(bounds: bounds!)
+        // let geoJsonString = boundsToGeoString(bounds: bounds!)
         // 2. get image map
         let dx = (bounds!.ne.longitude - bounds!.sw.longitude)
         let dy = (bounds!.ne.latitude  - bounds!.sw.latitude)
@@ -38,10 +37,9 @@ class MapScreenShot
         let y = bounds!.ne.latitude - dy/2
         let center : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: y, longitude: x)
         
-        
-        // calculate size in pixes to show with max zoom
-        let zoom = 13.5
-        
+        // try calculate new zoom
+        var zoom = log2((360*Double.pi*2*63727982*cos(center.latitude*Double.pi/180))/CLLocation.distance_max(bounds: bounds!)) - 12.2928
+        if (zoom > 18.00) {zoom = 18.0}
         
 //        let l1 = CLLocation(latitude: bounds!.sw.longitude, longitude: bounds!.ne.latitude)
 //        let l2 = CLLocation(latitude: bounds!.ne.longitude, longitude: bounds!.ne.latitude)
@@ -78,7 +76,7 @@ class MapScreenShot
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(2.0)
         context?.setStrokeColor(UIColor.blue.cgColor)
-        // this is unrealy magic voodoo
+        // this is unrealy magic voodoo, calculate how meters in one pixel
         let xzoom = Double.pi*2*63727982*cos(center.latitude*Double.pi/180)/pow(2, zoom+11+1.2928)
         // let xzoom = Double.pi*2*63727982*cos(center.latitude*Double.pi/180)/pow(2, zoom+11+2.2928)
         
@@ -159,9 +157,15 @@ extension CLLocation {
             return p1.distance(from: p2)
         } else
         {
-            let v = p1.distance(from: p2)
             return p1.distance(from: p2)*(-1)
         }
+    }
+    
+    class func distance_max(bounds: MGLCoordinateBounds) -> Double {
+        let p1 = CLLocationCoordinate2D(latitude: bounds.ne.latitude, longitude: bounds.ne.longitude)
+        let p2 = CLLocationCoordinate2D(latitude: bounds.sw.latitude, longitude: bounds.sw.longitude)
+        let maxd = max(distance_x(from:p1, to: p2), distance_y(from:p1, to: p2))
+        return maxd
     }
     
 }

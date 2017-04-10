@@ -19,6 +19,9 @@ class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationM
     var current_core_data_train : TrainCoreData?
     var needRecordTrain : Bool = false
     var totalDistance : Double = 0.0
+    
+    var distanceToNewPoint : Double = 0.0
+    
     var totalTime : Int = 0
     var startTime = NSDate()
     var onPauseState : Bool  = false {
@@ -98,64 +101,8 @@ class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationM
     var currrntZoomLevel : Double = 0
     // prepare static image with our train ans save it as image
     func prepareTrainPreview() {
-        // get the top.left bottom.rigth coordinates
-     /*   mapView.showsUserLocation = false
-        currrntZoomLevel = mapView.zoomLevel
-       // var coords = current_core_data_train?.getAllCoordinates2D()
-       // mapView.setVisibleCoordinates(&coords, count: coords?.count, edgePadding: 10, animated: true)
-       / let edge = UIEdgeInsets.init(top: CGFloat(20), left: CGFloat(20), bottom: CGFloat(20), right: CGFloat(20))
-        
- 
-        // set the bounds :
-        mapView.setVisibleCoordinateBounds(currentCoordinateBounds!, animated: false)
-        let map_dx = abs(mapView.visibleCoordinateBounds.ne.longitude - mapView.visibleCoordinateBounds.sw.longitude)
-        let map_dy = abs(mapView.visibleCoordinateBounds.ne.latitude - mapView.visibleCoordinateBounds.sw.latitude)
-     
-        let track_dx = abs(currentCoordinateBounds!.ne.longitude - currentCoordinateBounds!.sw.longitude)
-        let track_dy = abs(currentCoordinateBounds!.ne.latitude - currentCoordinateBounds!.sw.latitude)
-        
-        if ((track_dx > map_dx) || (track_dy > map_dy))
-        {
-            let x = max(map_dx/track_dx, map_dy/track_dy)*1.2
-            
-            mapView.setZoomLevel(mapView.zoomLevel*x, animated: false)
-        }
-        // set the bounds :
-        mapView.setVisibleCoordinateBounds(currentCoordinateBounds!,edgePadding: edge, animated: true)
-        
-        needScreenShot = true
- */
+       
     }
-    
-    /*func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        if ( needScreenShot == true) {
-            needScreenShot = false
-            let screen = mapView.getSnapshotImage()
-            DispatchQueue.main.async {
-                print("map bounds")
-                print("ne.lat :\(self.mapView.visibleCoordinateBounds.ne.latitude)")
-                print("ne.lon :\(self.mapView.visibleCoordinateBounds.ne.longitude)")
-                print("sw.lat :\(self.mapView.visibleCoordinateBounds.sw.latitude)")
-                print("sw.lon :\(self.mapView.visibleCoordinateBounds.sw.longitude)")
-                
-                
-                print("track bounds")
-                print("ne.lat :\(self.currentCoordinateBounds!.ne.latitude)")
-                print("ne.lon :\(self.currentCoordinateBounds!.ne.longitude)")
-                print("sw.lat :\(self.currentCoordinateBounds!.sw.latitude)")
-                print("sw.lon :\(self.currentCoordinateBounds!.sw.longitude)")
-                
-                
-                self.current_core_data_train?.screenshot_width = Int16(screen.size.width)
-                self.current_core_data_train?.screenshot_heigth = Int16(screen.size.height)
-                self.current_core_data_train?.screenshot =  UIImagePNGRepresentation(screen) as NSData?
-                (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-                self.mapView.setZoomLevel(self.currrntZoomLevel, animated: false)
-                self.mapView.showsUserLocation = true
-            }
-        }
-    }
-*/
     
     // On Stop Training
     @IBAction func onClickStopTrain(_ sender: UIButton) {
@@ -189,14 +136,14 @@ class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationM
         } else {
            current_core_data_train?.EndInterval()
         }
-        
-        
     }
     
     @IBAction func onClickStartTrain(_ sender: UIButton) {
         buttonStop.isHidden = false
         buttonStart.isHidden = true
         buttonPause.isHidden = false
+        distanceToNewPoint = 0.0
+        
         
         tabBarController?.tabBar.isUserInteractionEnabled = false
         
@@ -307,6 +254,8 @@ class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationM
         
     }
     
+    
+    
     // processing the location change
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for loc in locations {
@@ -315,6 +264,18 @@ class TrainPageViewController: BTViewController, MGLMapViewDelegate, CLLocationM
                 mapView.latitude  = loc.coordinate.latitude
             }
             if needRecordTrain {
+                
+                if distanceToNewPoint <= totalDistance {
+                    // add  annotation with point
+                    let annotation = MGLPointAnnotation()
+                    annotation.coordinate =  loc.coordinate
+                    annotation.title = "\(Int(distanceToNewPoint/1000))"
+                    mapView.addAnnotation(annotation)
+                    // increase distance
+                    distanceToNewPoint += 1000
+                    
+                }
+                
                 calculateCurrentSpeed(loc1:lastLocation, loc2: loc)
                 if lastLocation != nil {
                     totalDistance += loc.distance(from: lastLocation!)

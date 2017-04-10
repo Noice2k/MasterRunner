@@ -23,7 +23,7 @@ public class TrainCoreData: NSManagedObject {
         if let entity = NSEntityDescription.entity(forEntityName: "TrainCoreData", in: container.viewContext) {
             if let newTrain = NSManagedObject(entity: entity, insertInto: container.viewContext) as? TrainCoreData {
                 newTrain.traindata = NSDate()
-                newTrain.caption = "Train at \(newTrain.traindata)"
+                newTrain.caption = "Train at \(newTrain.traindata!)"
                 newTrain.StartInterval()
                 return newTrain
             }
@@ -62,7 +62,7 @@ public class TrainCoreData: NSManagedObject {
     func EndInterval(){
         // save the last time to acces to the interval
         currentInterval?.stop_timestamp = NSDate()
-        print("\(currentInterval?.stop_timestamp)")
+        print("\(currentInterval!.stop_timestamp)")
         currentInterval = nil
     }
     
@@ -181,19 +181,23 @@ public class TrainCoreData: NSManagedObject {
         print(str!)
     }
     
+    
     func getAllCoordinates2D () -> [CLLocationCoordinate2D]
     {
         var coordinates = [CLLocationCoordinate2D]()
         // 
         if location_data != nil {
-            let json = try? JSONSerialization.jsonObject(with: location_data as! Data, options: [])
+            let json = try? JSONSerialization.jsonObject(with: location_data! as Data, options: [])
             if json != nil {
                 if let items = json as? NSArray {
                     for item in items {
                         if let loc = item as? [String:String] {
-                            let long = Double(loc["loc.long"]!)
-                            let lant = Double(loc["loc.lat"]!)
-                            coordinates += [CLLocationCoordinate2DMake(lant!, long!)]
+                            let long = loc["loc.long"]!
+                            if long != "0.0" {
+                                let long = Double(loc["loc.long"]!)
+                                let lant = Double(loc["loc.lat"]!)
+                                coordinates += [CLLocationCoordinate2DMake(lant!, long!)]
+                            }
                         }
                     }
                 }
@@ -213,7 +217,7 @@ public class TrainCoreData: NSManagedObject {
     func getGeoJsonString() ->String {
         var geoString = "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{\"stroke\":\"#00f\",\"stroke-width\": 3,\"stroke-opacity\":1},\"geometry\": { \"type\": \"LineString\",        \"coordinates\": ["
       
-        let json = try? JSONSerialization.jsonObject(with: location_data as! Data, options: [])
+        let json = try? JSONSerialization.jsonObject(with: location_data! as Data, options: [])
         if json != nil {
             if let items = json as? NSArray {
                 for item in items {
@@ -240,7 +244,7 @@ public class TrainCoreData: NSManagedObject {
     
     func exportLocationDataToFile() {
         if  let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
-            let path = dir.appendingPathComponent("\(traindata).json")
+            let path = dir.appendingPathComponent("\(traindata!).json")
             do {
                 try location_data?.write(to: path, options: NSData.WritingOptions.atomicWrite)
             }
